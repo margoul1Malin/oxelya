@@ -1,0 +1,94 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model Contact {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  name      String
+  email     String
+  subject   String
+  message   String
+  status    ContactStatus @default(PENDING)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  adminId   String? @db.ObjectId
+  admin     Admin?  @relation(fields: [adminId], references: [id])
+  replies   Reply[]
+}
+
+model Reply {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  content   String
+  createdAt DateTime @default(now())
+  contactId String   @db.ObjectId
+  contact   Contact  @relation(fields: [contactId], references: [id])
+  adminId   String   @db.ObjectId
+  admin     Admin    @relation(fields: [adminId], references: [id])
+}
+
+model Admin {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  username  String   @unique
+  email     String   @unique
+  password  String
+  role      AdminRole @default(ADMIN)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  contacts  Contact[]
+  replies   Reply[]
+}
+
+enum ContactStatus {
+  PENDING
+  IN_PROGRESS
+  RESOLVED
+  CLOSED
+}
+
+enum AdminRole {
+  ADMIN
+  SUPER_ADMIN
+}
+
+model BruteforceAttempt {
+  id            String   @id @default(auto()) @map("_id") @db.ObjectId
+  ip            String
+  userAgent     String
+  fingerprint   String   // Hash unique basé sur plusieurs paramètres
+  sessionId     String?
+  attempts      Int      @default(0)
+  lastAttempt   DateTime @default(now())
+  blockedUntil  DateTime?
+  isBlocked     Boolean  @default(false)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  
+  // Informations détaillées sur l'utilisateur
+  headers       Json     // Tous les headers HTTP
+  browser       String?
+  os            String?
+  device        String?
+  language      String?
+  timezone      String?
+  screenSize    String?
+  colorDepth    Int?
+  pixelRatio    Float?
+  canvasFingerprint String?
+  webglFingerprint String?
+  
+  @@index([ip])
+  @@index([fingerprint])
+  @@index([sessionId])
+  @@index([isBlocked])
+}
