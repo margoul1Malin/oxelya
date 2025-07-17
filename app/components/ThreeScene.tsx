@@ -2,11 +2,11 @@
 
 import { Canvas, useFrame } from '@react-three/fiber'
 import { OrbitControls, Environment, MeshDistortMaterial, Sphere, Box, Float, Stars, Html, useProgress, Preload } from '@react-three/drei'
-import { useRef, useMemo, useState, Suspense } from 'react'
+import { useRef, useMemo, useState, Suspense, useCallback } from 'react'
 import * as THREE from 'three'
 import Image from 'next/image'
 
-// Composant de chargement 3D
+// Composant de chargement 3D optimisé
 function Loader() {
   const { progress } = useProgress()
   return (
@@ -28,12 +28,12 @@ function Loader() {
   )
 }
 
-// Particules de données flottantes
+// Particules de données flottantes optimisées
 function DataParticles() {
-  const count = 1000
+  const count = 500 // Réduit de 1000 à 500
   const mesh = useRef<THREE.InstancedMesh>(null!)
   
-  const { positions } = useMemo(() => {
+  const { positions, colors } = useMemo(() => {
     const positions = new Float32Array(count * 3)
     const colors = new Float32Array(count * 3)
     
@@ -58,10 +58,9 @@ function DataParticles() {
     return { positions, colors }
   }, [])
   
-  useFrame((state) => {
+  // Animation optimisée avec useCallback
+  const animateParticles = useCallback((time: number) => {
     if (!mesh.current) return
-    
-    const time = state.clock.getElapsedTime()
     
     for (let i = 0; i < count; i++) {
       const i3 = i * 3
@@ -69,46 +68,48 @@ function DataParticles() {
       const y = positions[i3 + 1]
       const z = positions[i3 + 2]
       
-      // Animation organique
+      // Animation simplifiée pour de meilleures performances
       const matrix = new THREE.Matrix4()
-      const scale = Math.sin(time + i * 0.01) * 0.5 + 1
+      const scale = Math.sin(time * 0.3 + i * 0.01) * 0.3 + 1
       
       matrix.makeTranslation(
-        x + Math.sin(time * 0.5 + i * 0.01) * 2,
-        y + Math.cos(time * 0.3 + i * 0.02) * 2,
-        z + Math.sin(time * 0.7 + i * 0.015) * 2
+        x + Math.sin(time * 0.2 + i * 0.01) * 1.5,
+        y + Math.cos(time * 0.15 + i * 0.02) * 1.5,
+        z + Math.sin(time * 0.25 + i * 0.015) * 1.5
       )
       matrix.scale(new THREE.Vector3(scale, scale, scale))
       
       mesh.current.setMatrixAt(i, matrix)
     }
     mesh.current.instanceMatrix.needsUpdate = true
+  }, [positions, count])
+  
+  useFrame((state) => {
+    animateParticles(state.clock.getElapsedTime())
   })
   
   return (
     <instancedMesh ref={mesh} args={[undefined, undefined, count]}>
-      <sphereGeometry args={[0.05, 6, 6]} />
+      <sphereGeometry args={[0.05, 4, 4]} /> {/* Réduit les segments */}
       <meshBasicMaterial vertexColors />
     </instancedMesh>
   )
 }
 
-// Hologramme central d'Oxelya avec effet de vague
+// Hologramme central d'Oxelya avec effet de vague optimisé
 function CentralHologram() {
   const group = useRef<THREE.Group>(null!)
   const sphereRef = useRef<THREE.Mesh>(null!)
   const [hovered, setHovered] = useState(false)
-  const [, setMousePosition] = useState({ x: 0, y: 0 })
   const [distortIntensity, setDistortIntensity] = useState(0.3)
   const [speedIntensity, setSpeedIntensity] = useState(0.5)
-  const [, setWaveCenter] = useState({ x: 0, y: 0, z: 0 })
   
-  useFrame((state) => {
+  // Animation optimisée
+  const animateHologram = useCallback((time: number) => {
     if (!group.current) return
-    const time = state.clock.getElapsedTime()
     
-    group.current.rotation.y = time * 0.2
-    group.current.position.y = Math.sin(time * 0.5) * 0.5
+    group.current.rotation.y = time * 0.15 // Réduit la vitesse
+    group.current.position.y = Math.sin(time * 0.3) * 0.3 // Réduit l'amplitude
     
     // Transition progressive de l'intensité
     if (hovered) {
@@ -118,27 +119,28 @@ function CentralHologram() {
       setDistortIntensity(prev => Math.max(prev - 0.005, 0.3))
       setSpeedIntensity(prev => Math.max(prev - 0.01, 0.5))
     }
+  }, [hovered])
+  
+  useFrame((state) => {
+    animateHologram(state.clock.getElapsedTime())
   })
   
-  const handlePointerMove = (event: any) => {
+  const handlePointerMove = useCallback((event: any) => {
     if (hovered && sphereRef.current) {
       // Utiliser les coordonnées normalisées de Three.js
-      const x = event.point.x / 2 // Normaliser par rapport au rayon de la sphère
+      const x = event.point.x / 2
       const y = event.point.y / 2
       const z = event.point.z / 2
-      
-      setMousePosition({ x, y })
-      setWaveCenter({ x, y, z })
     }
-  }
+  }, [hovered])
   
   return (
     <group ref={group}>
       {/* Sphère centrale avec effet de vague progressif */}
-      <Float speed={2} rotationIntensity={0.5} floatIntensity={0.5}>
+      <Float speed={1.5} rotationIntensity={0.3} floatIntensity={0.3}>
         <Sphere 
           ref={sphereRef}
-          args={[2, 128, 128]} // Plus de segments pour un effet plus lisse
+          args={[2, 64, 64]} // Réduit les segments de 128 à 64
           onPointerEnter={() => setHovered(true)}
           onPointerLeave={() => setHovered(false)}
           onPointerMove={handlePointerMove}
@@ -157,33 +159,33 @@ function CentralHologram() {
         </Sphere>
       </Float>
       
-      {/* Anneaux orbitaux avec réaction au survol */}
-      {[...Array(3)].map((_, i) => (
-        <Float key={i} speed={1 + i * 0.2} rotationIntensity={hovered ? 0.8 : 0.3}>
+      {/* Anneaux orbitaux optimisés */}
+      {[...Array(2)].map((_, i) => ( // Réduit de 3 à 2 anneaux
+        <Float key={i} speed={0.8 + i * 0.2} rotationIntensity={hovered ? 0.6 : 0.2}>
           <mesh rotation={[Math.PI / 2 + i * 0.3, 0, i * Math.PI / 3]} position={[0, 0, 0]}>
-            <torusGeometry args={[3 + i * 0.5, 0.05, 8, 100]} />
+            <torusGeometry args={[3 + i * 0.5, 0.05, 6, 64]} /> {/* Réduit les segments */}
             <meshStandardMaterial 
               color={`hsl(${180 + i * 60}, 80%, ${hovered ? 80 : 60}%)`} 
               emissive={`hsl(${180 + i * 60}, 80%, ${hovered ? 50 : 30}%)`}
-              emissiveIntensity={hovered ? 1.5 : 1}
+              emissiveIntensity={hovered ? 1.2 : 0.8}
               transparent
-              opacity={hovered ? 0.9 : 0.7}
+              opacity={hovered ? 0.8 : 0.6}
             />
           </mesh>
         </Float>
       ))}
       
-      {/* Particules d'eau plus subtiles et moins nombreuses */}
+      {/* Particules d'eau optimisées */}
       {hovered && (
         <group>
-          {[...Array(8)].map((_, i) => (
-            <Float key={`particle-${i}`} speed={1.5 + Math.random() * 1.5} rotationIntensity={0.8}>
+          {[...Array(4)].map((_, i) => ( // Réduit de 8 à 4 particules
+            <Float key={`particle-${i}`} speed={1.2 + Math.random() * 0.8} rotationIntensity={0.6}>
               <mesh position={[
                 (Math.random() - 0.5) * 3,
                 (Math.random() - 0.5) * 3,
                 (Math.random() - 0.5) * 3
               ]}>
-                <sphereGeometry args={[0.02, 6, 6]} />
+                <sphereGeometry args={[0.02, 4, 4]} /> {/* Réduit les segments */}
                 <meshStandardMaterial
                   color="#00d4ff"
                   transparent
@@ -200,12 +202,12 @@ function CentralHologram() {
   )
 }
 
-// Cubes de code flottants
+// Cubes de code flottants optimisés
 function FloatingCodeCubes() {
   const groupRef = useRef<THREE.Group>(null!)
   
   const cubePositions = useMemo(() => {
-    return [...Array(20)].map(() => ({
+    return [...Array(12)].map(() => ({ // Réduit de 20 à 12 cubes
       x: (Math.random() - 0.5) * 30,
       y: (Math.random() - 0.5) * 30,
       z: (Math.random() - 0.5) * 30,
@@ -214,23 +216,27 @@ function FloatingCodeCubes() {
     }))
   }, [])
   
-  useFrame((state) => {
+  // Animation optimisée
+  const animateCubes = useCallback((time: number) => {
     if (!groupRef.current) return
     
     groupRef.current.children.forEach((cube, i) => {
       const pos = cubePositions[i]
-      const time = state.clock.getElapsedTime()
       
-      cube.rotation.x = time * pos.speed
-      cube.rotation.y = time * pos.speed * 1.5
-      cube.position.y += Math.sin(time + i) * 0.01
+      cube.rotation.x = time * pos.speed * 0.5 // Réduit la vitesse
+      cube.rotation.y = time * pos.speed * 0.8
+      cube.position.y += Math.sin(time * 0.5 + i) * 0.005 // Réduit l'amplitude
     })
+  }, [cubePositions])
+  
+  useFrame((state) => {
+    animateCubes(state.clock.getElapsedTime())
   })
   
   return (
     <group ref={groupRef}>
       {cubePositions.map((pos, i) => (
-        <Float key={i} speed={1 + i * 0.1} rotationIntensity={0.3} floatIntensity={0.3}>
+        <Float key={i} speed={0.8 + i * 0.1} rotationIntensity={0.2} floatIntensity={0.2}>
           <Box 
             position={[pos.x, pos.y, pos.z]} 
             scale={pos.scale}
@@ -250,25 +256,25 @@ function FloatingCodeCubes() {
   )
 }
 
-// Composant principal de la scène
+// Composant principal de la scène optimisé
 function Scene() {
   return (
     <>
-      {/* Éclairage avancé */}
-      <ambientLight intensity={0.2} />
-      <pointLight position={[10, 10, 10]} intensity={1} color="#00d4ff" />
-      <pointLight position={[-10, -10, -10]} intensity={0.8} color="#ff0080" />
+      {/* Éclairage optimisé */}
+      <ambientLight intensity={0.3} />
+      <pointLight position={[10, 10, 10]} intensity={0.8} color="#00d4ff" />
+      <pointLight position={[-10, -10, -10]} intensity={0.6} color="#ff0080" />
       <spotLight 
         position={[0, 20, 0]} 
         angle={Math.PI / 6} 
         penumbra={0.5} 
-        intensity={1.5} 
+        intensity={1.2} 
         color="#ff6b35"
         castShadow
       />
       
-      {/* Étoiles d'arrière-plan */}
-      <Stars radius={100} depth={50} count={5000} factor={4} saturation={0} fade />
+      {/* Étoiles d'arrière-plan optimisées */}
+      <Stars radius={100} depth={50} count={3000} factor={4} saturation={0} fade />
       
       {/* Particules de données */}
       <DataParticles />
@@ -288,7 +294,7 @@ function Scene() {
   )
 }
 
-// Composant principal exporté
+// Composant principal exporté optimisé
 export default function ThreeScene() {
   return (
     <div className="w-full h-screen">
@@ -297,12 +303,15 @@ export default function ThreeScene() {
         gl={{ 
           antialias: true, 
           alpha: true,
-          powerPreference: "high-performance"
+          powerPreference: "high-performance",
+          stencil: false, // Désactive le stencil pour les performances
+          depth: true
         }}
         style={{ 
           background: 'radial-gradient(circle at center, #1a1a2e 0%, #0a0a0a 70%)'
         }}
         shadows
+        frameloop="demand" // Optimisation du frameloop
       >
         <Suspense fallback={<Loader />}>
           <Scene />
@@ -314,7 +323,7 @@ export default function ThreeScene() {
           enableZoom={true}
           enableRotate={true}
           autoRotate={true}
-          autoRotateSpeed={0.5}
+          autoRotateSpeed={0.3} // Réduit la vitesse
           maxDistance={50}
           minDistance={5}
           maxPolarAngle={Math.PI / 1.8}
