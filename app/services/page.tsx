@@ -26,7 +26,7 @@ export default function Services() {
         'Rapport détaillé avec plan de remediation',
       ],
       color: 'from-red-500 to-pink-600',
-      details: 'Nos experts certifiés CEH et OSCP utilisent les dernières méthodologies pour protéger votre entreprise contre les cyberattaques. Nous analysons vos applications web, vos API, votre infrastructure réseau et sensibilisons vos équipes aux bonnes pratiques de sécurité.',
+      details: 'Nos experts utilisent les dernières méthodologies pour protéger votre entreprise contre les cyberattaques. Nous analysons vos applications web, vos API, votre infrastructure réseau et sensibilisons vos équipes aux bonnes pratiques de sécurité.',
       disabled: true,
       slug: 'pentest-cybersecurite'
     },

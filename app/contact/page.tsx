@@ -260,7 +260,7 @@ export default function Contact() {
               <div className="text-center p-6 bg-white/5 rounded-xl border border-white/10">
                 <div className="text-4xl mb-4">🎯</div>
                 <h3 className="text-xl font-semibold text-white mb-3">Expertise</h3>
-                <p className="text-gray-300">Équipe d&apos;experts certifiés avec une expérience éprouvée dans tous nos domaines d&apos;intervention.</p>
+                <p className="text-gray-300">Équipe d&apos;experts avec une expérience éprouvée dans tous nos domaines d&apos;intervention.</p>
               </div>
             </AnimationWrapper>
 
