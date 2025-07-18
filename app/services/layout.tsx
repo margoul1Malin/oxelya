@@ -1,21 +1,18 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Services Numériques Oxelya | Pentest, Développement Web, Conseil IT | Bordeaux",
-  description: "Oxelya propose des services numériques complets à Bordeaux : tests d'intrusion et cybersécurité, développement web moderne React/Next.js, conseil IT stratégique et solutions d'innovation sur-mesure. Experts certifiés CEH et OSCP.",
+  title: "Oxelya - Conception Web & Services Numériques",
+  description: "Oxelya offre ses prestantions en conception web, programmation, sécurité informatique, et conseil en informatique.",
   keywords: [
     // Services principaux
-    "pentest Bordeaux", "test intrusion", "cybersécurité", "audit sécurité", 
-    "développement web Bordeaux", "développeur React", "développeur Next.js",
-    "conseil informatique", "transformation digitale", "infrastructure IT",
-    "solutions innovation", "automatisation", "DevOps",
+    "pentest", "sécurité informatique", "développement web", "services numériques", "conseil IT", "cybersécurité", "transformation numérique", "audit sécurité", "conception web", "programmation", "conseil en informatique",
     
     // Technologies
     "React", "Next.js", "TypeScript", "Node.js", "Python", "API REST", "GraphQL",
     "AWS", "Azure", "GCP", "Docker", "Kubernetes", "PostgreSQL", "MongoDB",
     
     // Géographie
-    "Bordeaux", "Gironde", "Nouvelle-Aquitaine", "France",
+    "Bordeaux", "Gironde", "Nouvelle-Aquitaine", "France", "Arcachon",
     
     // Secteurs
     "sécurité informatique", "développement application web", "migration cloud",
@@ -23,7 +20,7 @@ export const metadata: Metadata = {
     "applications mobiles", "PWA", "microservices", "CI/CD"
   ],
   authors: [{ name: "Oxelya", url: "https://oxelya.com" }],
-  creator: "Oxelya - Services Numériques",
+  creator: "Oxelya - Conception Web & Services Numériques",
   publisher: "Oxelya",
   formatDetection: {
     email: false,
@@ -31,10 +28,10 @@ export const metadata: Metadata = {
     telephone: false,
   },
   openGraph: {
-    title: "Services Numériques Professionnels | Oxelya Bordeaux",
-    description: "Expertise en cybersécurité, développement web React/Next.js et conseil IT. Tests d'intrusion, audits sécurité, applications web modernes et accompagnement transformation digitale à Bordeaux.",
+    title: "Oxelya - Conception Web & Services Numériques",
+    description: "Oxelya offre ses prestantions en conception web, programmation, sécurité informatique, et conseil en informatique.",
     url: "https://oxelya.com/services",
-    siteName: "Oxelya - Services Numériques",
+    siteName: "Oxelya - Conception Web & Services Numériques",
     type: "website",
     locale: "fr_FR",
     images: [
@@ -42,15 +39,15 @@ export const metadata: Metadata = {
         url: "/og-services.jpg",
         width: 1200,
         height: 630,
-        alt: "Services numériques Oxelya - Pentest, Développement Web, Conseil IT",
+        alt: "Oxelya - Conception Web & Services Numériques",
         type: "image/jpeg",
       }
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Services Numériques Oxelya | Pentest & Développement Web Bordeaux",
-    description: "Tests d'intrusion, développement React/Next.js, conseil IT. Experts certifiés pour votre transformation digitale à Bordeaux.",
+    title: "Oxelya - Conception Web & Services Numériques",
+    description: "Oxelya offre ses prestantions en conception web, programmation, sécurité informatique, et conseil en informatique.",
     site: "@oxelya",
     creator: "@oxelya",
     images: ["/twitter-services.jpg"],

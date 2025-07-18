@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Contact Oxelya | Devis Pentest & Développement Web | Bordeaux",
+  title: "Oxelya - Contact",
   description: "Contactez Oxelya pour vos projets de cybersécurité, développement web et conseil IT à Bordeaux. Devis gratuit, réponse rapide. Email: contact@oxelya.com - Tél: 06 43 32 34 12",
   keywords: [
     // Contact
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     telephone: true,
   },
   openGraph: {
-    title: "Contactez Oxelya | Expert Cybersécurité & Développement Web Bordeaux",
+    title: "Oxelya - Contact",
     description: "Besoin d'un expert en cybersécurité ou développement web à Bordeaux ? Contactez Oxelya pour un devis personnalisé. Tests d'intrusion, applications React/Next.js, conseil IT.",
     url: "https://oxelya.com/contact",
     siteName: "Oxelya - Services Numériques",
@@ -47,7 +47,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Contact Oxelya | Pentest & Développement Web Bordeaux",
+    title: "Oxelya - Contact",
     description: "Contactez nos experts en cybersécurité et développement web à Bordeaux. Devis gratuit et réponse rapide pour vos projets.",
     site: "@oxelya",
     creator: "@oxelya",

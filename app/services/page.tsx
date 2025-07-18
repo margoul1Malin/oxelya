@@ -1,8 +1,15 @@
+"use client";
 import Link from 'next/link'
 import Navigation from '../components/Navigation'
 import AnimationWrapper from '../components/AnimationWrapper'
+import { motion, useInView } from 'framer-motion'
+import { useRef, useState, useEffect } from 'react'
 
 export default function Services() {
+  const [activeStep, setActiveStep] = useState(0)
+  const processRef = useRef(null)
+  const isInView = useInView(processRef, { once: true, amount: 0.3 })
+
   const services = [
     {
       icon: '🛡️',
@@ -85,6 +92,24 @@ export default function Services() {
     }
   ];
 
+  // Animation du processus quand la section est visible
+  useEffect(() => {
+    if (isInView) {
+      const interval = setInterval(() => {
+        setActiveStep(prev => {
+          if (prev < processSteps.length - 1) {
+            return prev + 1
+          } else {
+            clearInterval(interval)
+            return prev
+          }
+        })
+      }, 800) // Délai entre chaque étape
+
+      return () => clearInterval(interval)
+    }
+  }, [isInView])
+
   const processSteps = [
     {
       number: "01",
@@ -155,25 +180,16 @@ export default function Services() {
       {/* Services Grid */}
       <div className="max-w-7xl mx-auto px-8 pb-20">
         <div className="grid lg:grid-cols-2 gap-12">
-          {services.map((service, index) => (
+          {services
+            .filter(service => !service.disabled)
+            .map((service, index) => (
             <AnimationWrapper
               key={index}
               animation="slideUp"
               delay={index * 0.1}
               duration={0.6}
             >
-              <div className={`bg-white/5 backdrop-blur-sm rounded-xl p-8 border border-white/10 hover:border-white/20 transition-all duration-300 group hover:scale-[1.02] h-full relative ${service.disabled ? 'opacity-60' : ''}`}>
-                {/* Loader pour service désactivé */}
-                {service.disabled && (
-                  <div className="absolute inset-0 bg-black/40 backdrop-blur-sm rounded-xl flex items-center justify-center z-10">
-                    <div className="text-center">
-                      <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-cyan-400 mx-auto mb-4"></div>
-                      <p className="text-white font-semibold">Bientôt disponible</p>
-                      <p className="text-gray-300 text-sm mt-1">Service en cours de développement</p>
-                    </div>
-                  </div>
-                )}
-                
+              <div className="bg-white/5 backdrop-blur-sm rounded-xl p-8 border border-white/10 hover:border-white/20 transition-all duration-300 group hover:scale-[1.02] h-full relative">
                 <div className="h-full flex flex-col">
                   <div className="text-6xl mb-6">{service.icon}</div>
                   <h2 className="text-3xl font-bold text-white mb-2 font-winky">{service.title}</h2>
@@ -196,21 +212,12 @@ export default function Services() {
                     <p className="text-sm text-gray-300 italic">{service.details}</p>
                   </div>
 
-                  {service.disabled ? (
-                    <button 
-                      disabled 
-                      className={`w-full py-3 px-6 rounded-lg bg-gray-600 text-gray-400 font-semibold mt-auto cursor-not-allowed`}
-                    >
-                      Service indisponible
-                    </button>
-                  ) : (
-                    <Link 
-                      href={`/services/${service.slug}`}
-                      className={`w-full py-3 px-6 rounded-lg bg-gradient-to-r ${service.color} text-white font-semibold transition-all duration-300 mt-auto hover:scale-105 text-center block`}
-                    >
-                      En savoir plus
-                    </Link>
-                  )}
+                  <Link 
+                    href={`/services/${service.slug}`}
+                    className={`w-full py-3 px-6 rounded-lg bg-gradient-to-r ${service.color} text-white font-semibold transition-all duration-300 mt-auto hover:scale-105 text-center block`}
+                  >
+                    En savoir plus
+                  </Link>
                 </div>
               </div>
             </AnimationWrapper>
@@ -219,42 +226,83 @@ export default function Services() {
       </div>
 
       {/* Notre processus */}
-      <AnimationWrapper animation="fadeIn" delay={0.4} duration={0.8}>
-        <div className="bg-gradient-to-r from-gray-900/50 to-black/50 py-20">
-          <div className="max-w-7xl mx-auto px-8">
+      <div ref={processRef} className="bg-gradient-to-r from-gray-900/50 to-black/50 py-20">
+        <div className="max-w-7xl mx-auto px-8">
+          <AnimationWrapper animation="fadeIn" delay={0.4} duration={0.8}>
             <div className="text-center mb-16">
               <h2 className="text-4xl font-bold text-white mb-6 font-winky">Notre Processus</h2>
               <p className="text-xl text-gray-300 max-w-3xl mx-auto">
                 Une méthodologie éprouvée pour garantir le succès de vos projets, de l&apos;analyse initiale à la livraison finale.
               </p>
             </div>
+          </AnimationWrapper>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-              {processSteps.map((step, index) => (
-                <AnimationWrapper
-                  key={index}
-                  animation="slideUp"
-                  delay={0.6 + index * 0.1}
-                  duration={0.6}
-                >
-                  <div className="text-center">
-                    <div className="relative mb-6">
-                      <div className="w-16 h-16 bg-gradient-to-r from-cyan-500 to-purple-600 rounded-full flex items-center justify-center mx-auto">
-                        <span className="text-xl font-bold text-white">{step.number}</span>
-                      </div>
-                      {index < processSteps.length - 1 && (
-                        <div className="hidden lg:block absolute top-8 left-1/2 w-full h-px bg-gradient-to-r from-cyan-500 to-purple-600 transform translate-x-8"></div>
-                      )}
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {processSteps.map((step, index) => (
+              <motion.div
+                key={index}
+                className="text-center"
+                initial={{ opacity: 0, y: 20 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.6, delay: index * 0.2 }}
+              >
+                <div className="relative mb-6">
+                  <motion.div 
+                    className="w-16 h-16 rounded-full flex items-center justify-center mx-auto relative overflow-hidden"
+                    animate={{
+                      background: index <= activeStep 
+                        ? "linear-gradient(135deg, #06b6d4, #8b5cf6)" 
+                        : "linear-gradient(135deg, #374151, #6b7280)"
+                    }}
+                    transition={{ duration: 0.5, delay: index * 0.1 }}
+                  >
+                    {/* Barre de progression animée */}
+                    {index <= activeStep && (
+                      <motion.div
+                        className="absolute inset-0 bg-gradient-to-r from-cyan-400 to-purple-500"
+                        initial={{ scaleX: 0 }}
+                        animate={{ scaleX: 1 }}
+                        transition={{ duration: 0.8, delay: index * 0.1 }}
+                        style={{ transformOrigin: "left" }}
+                      />
+                    )}
+                    <span className="text-xl font-bold text-white relative z-10">{step.number}</span>
+                  </motion.div>
+                  
+                  {/* Ligne de connexion avec animation */}
+                  {index < processSteps.length - 1 && (
+                    <div className="hidden lg:block absolute top-8 left-1/2 w-full h-px bg-gray-600 transform translate-x-8">
+                      <motion.div
+                        className="h-full bg-gradient-to-r from-cyan-500 to-purple-600"
+                        initial={{ scaleX: 0 }}
+                        animate={index < activeStep ? { scaleX: 1 } : {}}
+                        transition={{ duration: 0.8, delay: (index + 1) * 0.1 }}
+                        style={{ transformOrigin: "left" }}
+                      />
                     </div>
-                    <h3 className="text-xl font-semibold text-white mb-3">{step.title}</h3>
-                    <p className="text-gray-300 text-sm">{step.description}</p>
-                  </div>
-                </AnimationWrapper>
-              ))}
-            </div>
+                  )}
+                </div>
+                
+                <motion.h3 
+                  className="text-xl font-semibold text-white mb-3"
+                  animate={index <= activeStep ? { color: "#ffffff" } : { color: "#6b7280" }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                >
+                  {step.title}
+                </motion.h3>
+                
+                <motion.p 
+                  className="text-sm"
+                  animate={index <= activeStep ? { color: "#d1d5db" } : { color: "#6b7280" }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                >
+                  {step.description}
+                </motion.p>
+              </motion.div>
+            ))}
           </div>
         </div>
-      </AnimationWrapper>
+      </div>
 
       {/* Pourquoi nous choisir */}
       <AnimationWrapper animation="fadeIn" delay={0.8} duration={0.8}>

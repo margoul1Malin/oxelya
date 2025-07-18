@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Politique de Confidentialité Oxelya | RGPD | Protection Données Personnelles",
-  description: "Politique de confidentialité d'Oxelya conforme RGPD. Protection des données personnelles, cookies, droits utilisateurs, DPO contact. Transparence totale sur le traitement de vos données.",
+  title: "Oxelya - Politique de Confidentialité",
+  description: "Oxelya respecte la confidentialité de vos données personnelles. Politique de confidentialité transparente et complète.",
   keywords: [
     // RGPD
     "politique confidentialité", "RGPD", "protection données personnelles", 
-    "droits utilisateur", "consentement", "DPO", "délégué protection données",
+    "droits utilisateur", "consentement", "DPO", "délégué protection données", "Oxelya", "Oxelya RGPD", "Oxelya Politique de Confidentialité", "Oxelya Politique de Confidentialité RGPD", "Oxelya Politique de Confidentialité RGPD Oxelya", "Oxelya Politique de Confidentialité RGPD Oxelya", "Oxelya Politique de Confidentialité RGPD Oxelya", "Oxelya Politique de Confidentialité RGPD Oxelya", "Oxelya Politique de Confidentialité RGPD Oxelya", "Oxelya Politique de Confidentialité RGPD Oxelya", "Oxelya Politique de Confidentialité RGPD Oxelya", "Oxelya Politique de Confidentialité RGPD Oxelya", "Oxelya Politique de Confidentialité RGPD Oxelya", "Oxelya Politique de Confidentialité RGPD Oxelya", "Oxelya Politique de Confidentialité RGPD Oxelya", "Oxelya Politique de Confidentialité RGPD Oxelya", "Oxelya Politique de Confidentialité RGPD Oxelya", "Oxelya Politique de Confidentialité RGPD Oxelya", "Oxelya Politique de Confidentialité RGPD Oxelya", "Oxelya Politique de Confidentialité RGPD Oxelya", "Oxelya Politique de Confidentialité RGPD Oxelya", "Oxelya Politique de Confidentialité RGPD Oxelya", "Oxelya Politique de Confidentialité RGPD Oxelya", "Oxelya Politique de Confidentialité RGPD Oxelya", "Oxelya Politique de Confidentialité RGPD Oxelya", "Oxelya Politique de Confidentialité RGPD Oxelya", "Oxelya Politique de Confidentialité RGPD Oxelya", "Oxelya Politique de Confidentialité RGPD Oxelya", "Oxelya Politique de Confidentialité RGPD Oxelya", "Oxelya Politique de Confidentialité RGPD Oxelya", "Oxelya Politique de Confidentialité RGPD Oxelya", "Oxelya Politique de Confidentialité RGPD Oxelya",
     
     // Données
     "traitement données", "cookies", "données navigation", "formulaire contact",

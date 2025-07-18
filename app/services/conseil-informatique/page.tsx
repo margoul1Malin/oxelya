@@ -327,36 +327,37 @@ export default function ConseilInformatique() {
           </AnimationWrapper>
 
           <div className="relative">
-            {/* Timeline centrale */}
-            <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gradient-to-b from-cyan-400 to-purple-500 opacity-30"></div>
+            {/* Timeline centrale - cachée sur mobile */}
+            <div className="hidden md:block absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gradient-to-b from-cyan-400 to-purple-500 opacity-30"></div>
             
-            <div className="space-y-20">
+            <div className="space-y-8 md:space-y-20">
               {processSteps.map((step, index) => (
                 <motion.div
                   key={index}
-                  className={`flex items-center ${index % 2 === 0 ? 'flex-row' : 'flex-row-reverse'}`}
+                  className={`flex flex-col md:flex-row items-center ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'}`}
                   initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.8, delay: index * 0.2 }}
                   viewport={{ once: true }}
                 >
-                  <div className={`w-1/2 ${index % 2 === 0 ? 'pr-12 text-right' : 'pl-12 text-left'}`}>
-                    <div className="bg-gradient-to-br from-gray-800 to-gray-900 p-8 rounded-2xl border border-gray-700 hover:border-cyan-500/50 transition-all duration-300">
-                      <div className={`text-6xl font-bold bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent mb-4 ${index % 2 === 0 ? 'text-right' : 'text-left'}`}>
+                  <div className={`w-full md:w-1/2 ${index % 2 === 0 ? 'md:pr-12 md:text-right' : 'md:pl-12 md:text-left'}`}>
+                    <div className="bg-gradient-to-br from-gray-800 to-gray-900 p-6 md:p-8 rounded-2xl border border-gray-700 hover:border-cyan-500/50 transition-all duration-300">
+                      <div className={`text-4xl md:text-6xl font-bold bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent mb-4 text-center md:text-left ${index % 2 === 0 ? 'md:text-right' : 'md:text-left'}`}>
                         {step.number}
                       </div>
-                      <h3 className="text-2xl font-bold text-white mb-3">{step.title}</h3>
-                      <p className="text-cyan-400 mb-4 font-semibold">{step.description}</p>
-                      <p className="text-gray-300 leading-relaxed">{step.details}</p>
+                      <h3 className="text-xl md:text-2xl font-bold text-white mb-3 text-center md:text-left">{step.title}</h3>
+                      <p className="text-cyan-400 mb-4 font-semibold text-center md:text-left">{step.description}</p>
+                      <p className="text-gray-300 leading-relaxed text-center md:text-left">{step.details}</p>
                     </div>
                   </div>
                   
-                  <div className="relative flex items-center justify-center">
+                  {/* Point central - caché sur mobile */}
+                  <div className="hidden md:flex relative items-center justify-center">
                     <div className="w-4 h-4 bg-gradient-to-r from-cyan-400 to-purple-500 rounded-full z-10"></div>
                     <div className="absolute w-8 h-8 bg-gradient-to-r from-cyan-400/20 to-purple-500/20 rounded-full animate-pulse"></div>
                   </div>
                   
-                  <div className="w-1/2"></div>
+                  <div className="hidden md:block w-1/2"></div>
                 </motion.div>
               ))}
             </div>

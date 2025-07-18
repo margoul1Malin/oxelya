@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Mentions Légales Oxelya | Informations Légales | Bordeaux",
+  title: "Oxelya - Mentions Légales",
   description: "Mentions légales d'Oxelya, entreprise de services numériques basée à Bordeaux. Informations légales, SIRET, hébergement, propriété intellectuelle et responsabilité.",
   keywords: [
     // Légal
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     telephone: true,
   },
   openGraph: {
-    title: "Mentions Légales | Oxelya Services Numériques Bordeaux",
+    title: "Oxelya - Mentions Légales",
     description: "Informations légales complètes d'Oxelya, entreprise de services numériques spécialisée en cybersécurité et développement web à Bordeaux.",
     url: "https://oxelya.com/mentions-legales",
     siteName: "Oxelya - Services Numériques",
@@ -46,7 +46,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary",
-    title: "Mentions Légales Oxelya | Services Numériques Bordeaux",
+    title: "Oxelya - Mentions Légales",
     description: "Informations légales et coordonnées officielles d'Oxelya, expert en cybersécurité et développement web à Bordeaux.",
     site: "@oxelya",
     creator: "@oxelya",

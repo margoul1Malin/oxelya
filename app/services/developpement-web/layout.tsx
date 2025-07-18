@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Développement Web Moderne | Oxelya - Applications React, Next.js & Three.js',
+  title: 'Développement Web Moderne | Oxelya - Applications Next.js & Django',
   description: 'Expert en développement web à Bordeaux. Création d\'applications modernes avec React, Next.js, TypeScript et Three.js. Solutions sur-mesure, performantes et sécurisées.',
   keywords: [
     'développement web',

@@ -94,14 +94,14 @@ const winkyRough = localFont({
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL || 'https://oxelya.com'),
   title: {
-    default: "Oxelya - Excellence en Services Numériques",
+    default: "Oxelya - Conception Web & Services Numériques",
     template: "%s | Oxelya"
   },
   icons: {
-    icon: "/Logo3.png",
+    icon: "/favicon.ico",
   },
-  description: "Oxelya offre des services numériques d'excellence : pentest & sécurité, développement web, conseils informatiques et solutions innovantes sur-mesure.",
-  keywords: ["pentest", "sécurité informatique", "développement web", "services numériques", "conseil IT", "cybersécurité", "transformation numérique", "audit sécurité"],
+  description: "Oxelya offre ses prestantions en conception web, programmation, sécurité informatique, et conseil en informatique.",
+  keywords: ["pentest", "sécurité informatique", "développement web", "services numériques", "conseil IT", "cybersécurité", "transformation numérique", "audit sécurité", "conception web", "programmation", "conseil en informatique"],
   authors: [{ name: "Oxelya", url: "https://oxelya.com" }],
   creator: "Oxelya",
   publisher: "Oxelya",
@@ -125,7 +125,7 @@ export const metadata: Metadata = {
     type: "website",
     locale: "fr_FR",
     url: "https://oxelya.com",
-    title: "Oxelya - Excellence en Services Numériques",
+    title: "Oxelya - Conception Web & Services Numériques",
     description: "Votre partenaire de confiance pour la transformation numérique et la sécurité informatique",
     siteName: "Oxelya",
     images: [
@@ -139,7 +139,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Oxelya - Excellence en Services Numériques",
+    title: "Oxelya - Conception Web & Services Numériques",
     description: "Votre partenaire de confiance pour la transformation numérique et la sécurité informatique",
     images: ["/og-image.jpg"],
   },
