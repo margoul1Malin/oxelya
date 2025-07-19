@@ -120,6 +120,81 @@ export default async function BlogPage() {
           </div>
         )}
       </div>
+
+      {/* Contenu SEO supplémentaire */}
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
+        <div className="bg-white/5 backdrop-blur-sm rounded-xl p-8 border border-white/10">
+          <h2 className="text-3xl font-bold text-white mb-6 font-winky">Blog Oxelya - Expertise en Développement Web et Cybersécurité</h2>
+          <p className="text-gray-300 mb-8 leading-relaxed text-lg">
+            Découvrez notre blog dédié aux dernières innovations technologiques, à la cybersécurité et au développement web. 
+            Notre équipe d&apos;experts partage son savoir-faire en pentesting, conseil informatique et transformation numérique 
+            pour vous accompagner dans vos projets digitaux.
+          </p>
+          
+          <div className="grid md:grid-cols-2 gap-8">
+            <div>
+              <h3 className="text-xl font-semibold text-white mb-4">Développement Web et Technologies Modernes</h3>
+              <p className="text-gray-300 mb-4 leading-relaxed">
+                Notre blog couvre l&apos;ensemble des technologies web modernes : React, Next.js, TypeScript, 
+                et les dernières innovations en développement frontend et backend. Nous partageons nos expériences 
+                en création d&apos;applications web performantes et évolutives.
+              </p>
+              <p className="text-gray-300 leading-relaxed">
+                De la conception UX/UI à l&apos;optimisation des performances, en passant par l&apos;intégration d&apos;APIs 
+                et la mise en production, nos articles vous guident dans tous les aspects du développement web moderne.
+              </p>
+            </div>
+            
+            <div>
+              <h3 className="text-xl font-semibold text-white mb-4">Cybersécurité et Pentesting</h3>
+              <p className="text-gray-300 mb-4 leading-relaxed">
+                La sécurité informatique est au cœur de nos préoccupations. Nos articles traitent des dernières 
+                menaces cybernétiques, des bonnes pratiques de sécurité et des techniques de pentesting avancées 
+                pour protéger vos systèmes et données.
+              </p>
+              <p className="text-gray-300 leading-relaxed">
+                Nous partageons notre expertise en audit de sécurité, tests d&apos;intrusion et conseil en cybersécurité 
+                pour vous aider à renforcer la protection de votre infrastructure informatique.
+              </p>
+            </div>
+            
+            <div>
+              <h3 className="text-xl font-semibold text-white mb-4">Conseil Informatique et Transformation Digitale</h3>
+              <p className="text-gray-300 mb-4 leading-relaxed">
+                La transformation numérique est un enjeu majeur pour toutes les entreprises. Nos articles abordent 
+                les stratégies d&apos;optimisation IT, la migration cloud, et l&apos;accompagnement dans vos projets de 
+                modernisation technologique.
+              </p>
+              <p className="text-gray-300 leading-relaxed">
+                Nous vous guidons dans l&apos;élaboration de votre roadmap technologique, l&apos;optimisation de vos coûts IT 
+                et l&apos;adoption des meilleures pratiques pour maximiser votre efficacité opérationnelle.
+              </p>
+            </div>
+            
+            <div>
+              <h3 className="text-xl font-semibold text-white mb-4">Innovation et Tendances Technologiques</h3>
+              <p className="text-gray-300 mb-4 leading-relaxed">
+                Restez à la pointe de l&apos;innovation avec nos analyses des dernières tendances technologiques. 
+                Nous explorons les nouvelles technologies, les frameworks émergents et les méthodologies 
+                qui façonnent l&apos;avenir du développement et de la cybersécurité.
+              </p>
+              <p className="text-gray-300 leading-relaxed">
+                De l&apos;intelligence artificielle aux technologies blockchain, en passant par l&apos;IoT et la réalité virtuelle, 
+                nous vous tenons informés des innovations qui peuvent transformer votre business.
+              </p>
+            </div>
+          </div>
+          
+          <div className="mt-8 pt-8 border-t border-white/10">
+            <h3 className="text-xl font-semibold text-white mb-4">Expertise Régionale - Bordeaux, Arcachon, Marcheprime</h3>
+            <p className="text-gray-300 leading-relaxed">
+              Basés dans la région bordelaise, nous accompagnons les entreprises de Bordeaux, Arcachon et Marcheprime 
+              dans leurs projets de développement web et de cybersécurité. Notre expertise locale nous permet de comprendre 
+              les enjeux spécifiques de votre territoire et de proposer des solutions adaptées à votre contexte régional.
+            </p>
+          </div>
+        </div>
+      </div>
     </div>
   )
 }

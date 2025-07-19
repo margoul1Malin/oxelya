@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Oxelya - Conception Web & Services Numériques",
-  description: "Oxelya offre ses prestantions en conception web, programmation, sécurité informatique, et conseil en informatique.",
+  description: "Oxelya offre ses prestantions en CONCEPTION WEB, PROGRAMMATION, sécurité INFORMATIQUE, et CONSEIL en informatique. Partout dans le monde mais basé sur ARCACHON, BORDEAUX et MARCHEPRIME.",
   keywords: [
     // Services principaux
     "pentest", "sécurité informatique", "développement web", "services numériques", "conseil IT", "cybersécurité", "transformation numérique", "audit sécurité", "conception web", "programmation", "conseil en informatique",

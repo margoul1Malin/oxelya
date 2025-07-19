@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Oxelya - Contact",
-  description: "Contactez Oxelya pour vos projets de cybersécurité, développement web et conseil IT à Bordeaux. Devis gratuit, réponse rapide. Email: contact@oxelya.com - Tél: 06 43 32 34 12",
+  description: "Contactez Oxelya pour vos projets de CYBERSECURITÉ, DEVELOPPEMENT WEB et CONSEIL IT à BORDEAUX, MARCHEPRIME, ARCACHON et sur le BASSIN D'ARCACHON en général. Devis gratuit, réponse rapide. Email: contact@oxelya.com - Tél: 06 43 32 34 12",
   keywords: [
     // Contact
     "contact Oxelya", "devis pentest", "devis développement web", "contact cybersécurité",

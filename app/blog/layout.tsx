@@ -1,7 +1,6 @@
 import { Metadata } from 'next'
 import { Viewport } from 'next'
 import Navigation from '../components/Navigation'
-import Footer from '../components/Footer'
 
 export const viewport: Viewport = {
   width: 'device-width',
@@ -52,7 +51,6 @@ export default function BlogLayout({ children }: { children: React.ReactNode }) 
     <div>
       <Navigation currentPage="blog" />
       {children}
-      <Footer />
     </div>
   )
 }

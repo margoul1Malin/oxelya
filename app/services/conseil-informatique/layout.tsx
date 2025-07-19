@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
   title: 'Conseil Informatique & Stratégie IT | Oxelya - Expert à Bordeaux',
-  description: 'Expert en conseil informatique à Bordeaux. Audit IT, transformation digitale, stratégie technologique, optimisation systèmes. Accompagnement personnalisé pour PME et entreprises.',
+  description: 'Expert en conseil informatique à Bordeaux. Audit CYBERSECURITÉ, IT, transformation DIGITALE, stratégie TECHNOLOGIQUE, optimisation SYSTÈMES. Accompagnement personnalisé pour PME et entreprises.',
   keywords: [
     'conseil informatique',
     'conseil informatique Bordeaux',
@@ -17,7 +17,14 @@ export const metadata: Metadata = {
     'accompagnement technologique',
     'expertise IT',
     'sécurité informatique',
-    'infrastructure IT'
+    'infrastructure IT',
+    'Arcachon',
+    'Marcheprime',
+    'Bassin d\'Arcachon',
+    'Bordeaux',
+    'Nouvelle-Aquitaine',
+    'Gironde',
+    'Bassin d\'Arcachon',
   ],
   authors: [{ name: 'Oxelya' }],
   creator: 'Oxelya',

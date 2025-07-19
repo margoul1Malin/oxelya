@@ -297,7 +297,73 @@ export default function DeveloppementWeb() {
             </div>
           </AnimationWrapper>
 
+          {/* Version animée (visible avec JS) */}
           <ProcessAnimation steps={process} />
+
+          {/* Version statique SEO-friendly (visible sans JS) - placée en dessous */}
+          <div className="mt-16">
+            <div className="grid md:grid-cols-2 gap-8 mb-12">
+              {process.map((step, index) => (
+                <div key={index} className="bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/10">
+                  <div className="flex items-start space-x-4">
+                    <div className="flex-shrink-0">
+                      <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center text-white font-bold text-lg">
+                        {step.number}
+                      </div>
+                    </div>
+                    <div className="flex-1">
+                      <div className="text-2xl mb-2">{step.icon}</div>
+                      <h3 className="text-xl font-bold text-white mb-3">{step.title}</h3>
+                      <p className="text-gray-300 leading-relaxed">{step.description}</p>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+            
+            {/* Contenu SEO supplémentaire pour les bots */}
+            <div className="bg-white/5 backdrop-blur-sm rounded-xl p-8 border border-white/10 mt-8">
+              <h3 className="text-2xl font-bold text-white mb-4">Méthodologie de Développement Web</h3>
+              <p className="text-gray-300 mb-6 leading-relaxed">
+                Notre approche de développement web suit une méthodologie agile éprouvée, garantissant la réussite de votre projet digital. 
+                Chaque étape est soigneusement planifiée et exécutée avec précision pour maximiser l&apos;efficacité et minimiser les risques.
+              </p>
+              
+              <div className="grid md:grid-cols-2 gap-6">
+                <div>
+                  <h4 className="text-lg font-semibold text-white mb-3">Analyse et Conception</h4>
+                  <p className="text-gray-300 text-sm leading-relaxed">
+                    Nous commençons par une analyse approfondie de vos besoins métier, de votre audience cible et de vos objectifs commerciaux. 
+                    Cette phase inclut l&apos;étude de la concurrence, la création de wireframes interactifs et la définition de l&apos;architecture technique optimale.
+                  </p>
+                </div>
+                
+                <div>
+                  <h4 className="text-lg font-semibold text-white mb-3">Développement Agile</h4>
+                  <p className="text-gray-300 text-sm leading-relaxed">
+                    Le développement se déroule en sprints courts avec des démonstrations régulières. 
+                    Cette approche permet un feedback rapide et des ajustements en temps réel, garantissant que le produit final correspond parfaitement à vos attentes.
+                  </p>
+                </div>
+                
+                <div>
+                  <h4 className="text-lg font-semibold text-white mb-3">Tests et Optimisation</h4>
+                  <p className="text-gray-300 text-sm leading-relaxed">
+                    Chaque fonctionnalité est rigoureusement testée pour assurer performance, sécurité et accessibilité. 
+                    Nous optimisons également le SEO, la vitesse de chargement et la compatibilité cross-browser pour une expérience utilisateur parfaite.
+                  </p>
+                </div>
+                
+                <div>
+                  <h4 className="text-lg font-semibold text-white mb-3">Déploiement et Maintenance</h4>
+                  <p className="text-gray-300 text-sm leading-relaxed">
+                    La mise en production est effectuée avec précaution, incluant monitoring continu et sauvegardes automatiques. 
+                    Nous formons vos équipes et fournissons une documentation complète pour assurer la pérennité de votre application web.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 

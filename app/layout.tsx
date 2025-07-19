@@ -92,7 +92,7 @@ const winkyRough = localFont({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL || 'https://oxelya.com'),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL || 'https://www.oxelya.com'),
   title: {
     default: "Oxelya - Conception Web & Services Numériques",
     template: "%s | Oxelya"

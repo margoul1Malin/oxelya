@@ -227,13 +227,9 @@ export default function ConseilInformatique() {
                 <h3 className="text-2xl font-bold text-white mb-6">Pourquoi choisir Oxelya ?</h3>
                 <div className="space-y-6">
                   {benefits.map((benefit: Benefit, index: number) => (
-                    <motion.div
+                    <div
                       key={index}
                       className="flex items-start space-x-4"
-                      initial={{ opacity: 0, x: -20 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      transition={{ duration: 0.6, delay: index * 0.1 }}
-                      viewport={{ once: true }}
                     >
                       <div className="flex-shrink-0 w-12 h-12 bg-gradient-to-r from-cyan-500 to-purple-600 rounded-lg flex items-center justify-center text-white">
                         {benefit.icon}
@@ -242,7 +238,7 @@ export default function ConseilInformatique() {
                         <h4 className="text-lg font-semibold text-white mb-2">{benefit.title}</h4>
                         <p className="text-gray-300">{benefit.description}</p>
                       </div>
-                    </motion.div>
+                    </div>
                   ))}
                 </div>
               </div>
@@ -308,6 +304,102 @@ export default function ConseilInformatique() {
               </motion.div>
             ))}
           </div>
+
+          {/* Contenu SEO supplémentaire pour les expertises */}
+          <div className="mt-16 bg-white/5 backdrop-blur-sm rounded-xl p-8 border border-white/10">
+            <h3 className="text-2xl font-bold text-white mb-6">Expertise en Conseil Informatique sur Bordeaux, Arcachon et Marcheprime</h3>
+            <p className="text-gray-300 mb-6 leading-relaxed">
+              Oxelya est votre partenaire de confiance pour tous vos besoins en conseil informatique dans la région bordelaise. 
+              Notre expertise couvre l&apos;ensemble du territoire, de Bordeaux à Arcachon en passant par Marcheprime, 
+              pour vous accompagner dans votre transformation numérique et l&apos;optimisation de vos systèmes informatiques.
+            </p>
+            
+            <div className="grid md:grid-cols-2 gap-6">
+              <div>
+                <h4 className="text-lg font-semibold text-white mb-3">Conseil IT Bordeaux</h4>
+                <p className="text-gray-300 text-sm leading-relaxed">
+                  Notre équipe d&apos;experts IT à Bordeaux vous accompagne dans l&apos;audit de votre infrastructure, 
+                  la planification de votre transformation digitale et l&apos;optimisation de vos processus informatiques. 
+                  Nous intervenons auprès des PME et grandes entreprises pour maximiser leur efficacité technologique.
+                </p>
+              </div>
+              
+              <div>
+                <h4 className="text-lg font-semibold text-white mb-3">Services Numériques Arcachon</h4>
+                <p className="text-gray-300 text-sm leading-relaxed">
+                  À Arcachon, nous proposons des services de conseil informatique adaptés aux entreprises locales. 
+                  De l&apos;audit de sécurité à la migration cloud, en passant par l&apos;optimisation des systèmes existants, 
+                  nous vous aidons à moderniser votre infrastructure IT pour améliorer votre productivité.
+                </p>
+              </div>
+              
+              <div>
+                <h4 className="text-lg font-semibold text-white mb-3">Conseil Informatique Marcheprime</h4>
+                <p className="text-gray-300 text-sm leading-relaxed">
+                  Notre expertise en conseil informatique s&apos;étend également à Marcheprime et sa région. 
+                  Nous accompagnons les entreprises locales dans leur transition numérique, 
+                  en proposant des solutions sur-mesure adaptées à leurs besoins spécifiques et à leur budget.
+                </p>
+              </div>
+              
+              <div>
+                <h4 className="text-lg font-semibold text-white mb-3">Transformation Digitale Régionale</h4>
+                <p className="text-gray-300 text-sm leading-relaxed">
+                  Notre approche de conseil informatique vise à moderniser les entreprises de la région bordelaise. 
+                  Nous vous aidons à adopter les technologies les plus récentes tout en optimisant vos coûts IT 
+                  et en garantissant la sécurité de vos données et systèmes.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Contenu SEO supplémentaire pour la méthodologie */}
+          <div className="mt-16 bg-white/5 backdrop-blur-sm rounded-xl p-8 border border-white/10">
+            <h3 className="text-2xl font-bold text-white mb-6">Méthodologie de Conseil Informatique</h3>
+            <p className="text-gray-300 mb-6 leading-relaxed">
+              Notre approche de conseil informatique suit une méthodologie éprouvée, garantissant des résultats concrets 
+              et mesurables pour votre entreprise. Chaque étape est soigneusement planifiée et exécutée avec précision 
+              pour maximiser l&apos;efficacité de votre transformation numérique.
+            </p>
+            
+            <div className="grid md:grid-cols-2 gap-6">
+              <div>
+                <h4 className="text-lg font-semibold text-white mb-3">Audit et Diagnostic IT</h4>
+                <p className="text-gray-300 text-sm leading-relaxed">
+                  Nous commençons par un audit complet de votre infrastructure informatique existante. 
+                  Cette analyse approfondie inclut l&apos;évaluation de vos systèmes, processus et besoins métier 
+                  pour identifier les opportunités d&apos;amélioration et les risques potentiels.
+                </p>
+              </div>
+              
+              <div>
+                <h4 className="text-lg font-semibold text-white mb-3">Stratégie et Recommandations</h4>
+                <p className="text-gray-300 text-sm leading-relaxed">
+                  Basé sur notre audit, nous élaborons une stratégie IT sur-mesure avec des recommandations concrètes. 
+                  Nous définissons un planning de mise en œuvre, une estimation budgétaire détaillée 
+                  et les indicateurs de performance pour mesurer le succès de votre transformation.
+                </p>
+              </div>
+              
+              <div>
+                <h4 className="text-lg font-semibold text-white mb-3">Accompagnement et Formation</h4>
+                <p className="text-gray-300 text-sm leading-relaxed">
+                  Nous vous accompagnons dans la mise en place des recommandations avec une approche progressive. 
+                  Notre équipe forme vos collaborateurs et valide chaque étape pour garantir 
+                  le succès de votre transformation informatique.
+                </p>
+              </div>
+              
+              <div>
+                <h4 className="text-lg font-semibold text-white mb-3">Suivi et Optimisation Continue</h4>
+                <p className="text-gray-300 text-sm leading-relaxed">
+                  Nous assurons un suivi des performances post-implémentation avec des ajustements nécessaires 
+                  et des optimisations continues. Notre objectif est de maintenir l&apos;efficacité 
+                  de vos solutions IT sur le long terme.
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -360,6 +452,54 @@ export default function ConseilInformatique() {
                   <div className="hidden md:block w-1/2"></div>
                 </motion.div>
               ))}
+            </div>
+          </div>
+
+          {/* Contenu SEO supplémentaire pour la méthodologie */}
+          <div className="mt-16 bg-white/5 backdrop-blur-sm rounded-xl p-8 border border-white/10">
+            <h3 className="text-2xl font-bold text-white mb-6">Méthodologie de Conseil Informatique</h3>
+            <p className="text-gray-300 mb-6 leading-relaxed">
+              Notre approche de conseil informatique suit une méthodologie éprouvée, garantissant des résultats concrets 
+              et mesurables pour votre entreprise. Chaque étape est soigneusement planifiée et exécutée avec précision 
+              pour maximiser l&apos;efficacité de votre transformation numérique.
+            </p>
+            
+            <div className="grid md:grid-cols-2 gap-6">
+              <div>
+                <h4 className="text-lg font-semibold text-white mb-3">Audit et Diagnostic IT</h4>
+                <p className="text-gray-300 text-sm leading-relaxed">
+                  Nous commençons par un audit complet de votre infrastructure informatique existante. 
+                  Cette analyse approfondie inclut l&apos;évaluation de vos systèmes, processus et besoins métier 
+                  pour identifier les opportunités d&apos;amélioration et les risques potentiels.
+                </p>
+              </div>
+              
+              <div>
+                <h4 className="text-lg font-semibold text-white mb-3">Stratégie et Recommandations</h4>
+                <p className="text-gray-300 text-sm leading-relaxed">
+                  Basé sur notre audit, nous élaborons une stratégie IT sur-mesure avec des recommandations concrètes. 
+                  Nous définissons un planning de mise en œuvre, une estimation budgétaire détaillée 
+                  et les indicateurs de performance pour mesurer le succès de votre transformation.
+                </p>
+              </div>
+              
+              <div>
+                <h4 className="text-lg font-semibold text-white mb-3">Accompagnement et Formation</h4>
+                <p className="text-gray-300 text-sm leading-relaxed">
+                  Nous vous accompagnons dans la mise en place des recommandations avec une approche progressive. 
+                  Notre équipe forme vos collaborateurs et valide chaque étape pour garantir 
+                  le succès de votre transformation informatique.
+                </p>
+              </div>
+              
+              <div>
+                <h4 className="text-lg font-semibold text-white mb-3">Suivi et Optimisation Continue</h4>
+                <p className="text-gray-300 text-sm leading-relaxed">
+                  Nous assurons un suivi des performances post-implémentation avec des ajustements nécessaires 
+                  et des optimisations continues. Notre objectif est de maintenir l&apos;efficacité 
+                  de vos solutions IT sur le long terme.
+                </p>
+              </div>
             </div>
           </div>
         </div>
