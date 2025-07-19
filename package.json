@@ -10,6 +10,7 @@
     "init-admin": "tsx scripts/init-admin.ts"
   },
   "dependencies": {
+    "@babel/preset-env": "^7.28.0",
     "@prisma/client": "^6.12.0",
     "@react-three/drei": "^10.5.1",
     "@react-three/fiber": "^9.2.0",

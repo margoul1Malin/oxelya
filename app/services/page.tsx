@@ -128,7 +128,7 @@ export default function Services() {
             return prev
           }
         })
-      }, 800) // Délai entre chaque étape
+      }, 400) // Délai réduit entre chaque étape pour mobile
 
       return () => clearInterval(interval)
     }
@@ -306,17 +306,17 @@ export default function Services() {
       </div>
 
       {/* Pourquoi nous choisir */}
-      <AnimationWrapper animation="fadeIn" delay={0.8} duration={0.8}>
-        <div className="py-20">
-          <div className="max-w-7xl mx-auto px-8">
-            <div className="text-center mb-16">
-              <h2 className="text-4xl font-bold text-white mb-6 font-winky">Pourquoi Choisir Oxelya ?</h2>
-              <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+      <AnimationWrapper animation="fadeIn" delay={0.4} duration={0.6}>
+        <div className="py-12 sm:py-20">
+          <div className="max-w-7xl mx-auto px-4 sm:px-8">
+            <div className="text-center mb-12 sm:mb-16">
+              <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4 sm:mb-6 font-winky">Pourquoi Choisir Oxelya ?</h2>
+              <p className="text-lg sm:text-xl text-gray-300 max-w-3xl mx-auto px-4">
                 Notre expertise technique et notre approche personnalisée font de nous le partenaire idéal pour votre transformation numérique.
               </p>
             </div>
 
-            <div className="grid md:grid-cols-3 gap-8">
+            <div className="grid md:grid-cols-3 gap-6 sm:gap-8">
               {[
                 {
                   icon: '🎯',
@@ -337,13 +337,13 @@ export default function Services() {
                 <AnimationWrapper
                   key={index}
                   animation="slideUp"
-                  delay={1.0 + index * 0.1}
-                  duration={0.6}
+                  delay={0.5 + index * 0.05}
+                  duration={0.4}
                 >
-                  <div className="text-center p-6 bg-white/5 rounded-xl border border-white/10 hover:-translate-y-2 transition-transform duration-300">
-                    <div className="text-4xl mb-4">{item.icon}</div>
-                    <h3 className="text-xl font-semibold text-white mb-3">{item.title}</h3>
-                    <p className="text-gray-300">{item.description}</p>
+                  <div className="text-center p-4 sm:p-6 bg-white/5 rounded-xl border border-white/10 hover:-translate-y-2 transition-transform duration-300">
+                    <div className="text-3xl sm:text-4xl mb-3 sm:mb-4">{item.icon}</div>
+                    <h3 className="text-lg sm:text-xl font-semibold text-white mb-2 sm:mb-3">{item.title}</h3>
+                    <p className="text-sm sm:text-base text-gray-300">{item.description}</p>
                   </div>
                 </AnimationWrapper>
               ))}
@@ -353,27 +353,27 @@ export default function Services() {
       </AnimationWrapper>
 
       {/* FAQ */}
-      <AnimationWrapper animation="fadeIn" delay={1.2} duration={0.8}>
-        <div className="bg-gradient-to-r from-gray-900/50 to-black/50 py-20">
-          <div className="max-w-4xl mx-auto px-8">
-            <div className="text-center mb-16">
-              <h2 className="text-4xl font-bold text-white mb-6 font-winky">Questions Fréquentes</h2>
-              <p className="text-xl text-gray-300">
+      <AnimationWrapper animation="fadeIn" delay={0.6} duration={0.6}>
+        <div className="bg-gradient-to-r from-gray-900/50 to-black/50 py-12 sm:py-20">
+          <div className="max-w-4xl mx-auto px-4 sm:px-8">
+            <div className="text-center mb-12 sm:mb-16">
+              <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4 sm:mb-6 font-winky">Questions Fréquentes</h2>
+              <p className="text-lg sm:text-xl text-gray-300 px-4">
                 Réponses aux questions les plus courantes sur nos services et notre approche.
               </p>
             </div>
 
-            <div className="space-y-6">
+            <div className="space-y-4 sm:space-y-6">
               {faqItems.map((item, index) => (
                 <AnimationWrapper
                   key={index}
                   animation="slideLeft"
-                  delay={1.4 + index * 0.1}
-                  duration={0.6}
+                  delay={0.7 + index * 0.05}
+                  duration={0.4}
                 >
-                  <div className="bg-white/5 rounded-xl p-6 border border-white/10 hover:translate-x-2 transition-transform duration-300">
-                    <h3 className="text-lg font-semibold text-white mb-3">{item.question}</h3>
-                    <p className="text-gray-300 leading-relaxed">{item.answer}</p>
+                  <div className="bg-white/5 rounded-xl p-4 sm:p-6 border border-white/10 hover:translate-x-2 transition-transform duration-300">
+                    <h3 className="text-base sm:text-lg font-semibold text-white mb-2 sm:mb-3">{item.question}</h3>
+                    <p className="text-sm sm:text-base text-gray-300 leading-relaxed">{item.answer}</p>
                   </div>
                 </AnimationWrapper>
               ))}
@@ -383,26 +383,26 @@ export default function Services() {
       </AnimationWrapper>
 
       {/* CTA Section */}
-      <AnimationWrapper animation="slideUp" delay={2.0} duration={0.8}>
-        <div className="bg-gradient-to-r from-cyan-500/10 to-purple-500/10 py-20">
-          <div className="text-center max-w-4xl mx-auto px-8">
-            <h2 className="text-4xl font-bold text-white mb-6 font-winky">
+      <AnimationWrapper animation="slideUp" delay={0.8} duration={0.6}>
+        <div className="bg-gradient-to-r from-cyan-500/10 to-purple-500/10 py-12 sm:py-20">
+          <div className="text-center max-w-4xl mx-auto px-4 sm:px-8">
+            <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4 sm:mb-6 font-winky">
               Prêt à Démarrer Votre Projet ?
             </h2>
-            <p className="text-xl text-gray-300 mb-8">
+            <p className="text-lg sm:text-xl text-gray-300 mb-6 sm:mb-8 px-4">
               Contactez-nous dès aujourd&apos;hui pour discuter de vos besoins et obtenir un devis personnalisé. 
               Notre équipe d&apos;experts est là pour vous accompagner dans votre transformation numérique.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
               <Link 
                 href="/contact"
-                className="inline-block bg-gradient-to-r from-cyan-500 to-purple-600 hover:from-cyan-600 hover:to-purple-700 text-white font-bold py-4 px-8 rounded-full text-lg transition-all duration-300 hover:scale-105"
+                className="inline-block bg-gradient-to-r from-cyan-500 to-purple-600 hover:from-cyan-600 hover:to-purple-700 text-white font-bold py-3 sm:py-4 px-6 sm:px-8 rounded-full text-base sm:text-lg transition-all duration-300 hover:scale-105"
               >
                 Demander un devis gratuit
               </Link>
               <a 
                 href="tel:+33643323412"
-                className="inline-block border-2 border-cyan-500 text-cyan-400 hover:bg-cyan-500 hover:text-white font-bold py-4 px-8 rounded-full text-lg transition-all duration-300 hover:scale-105"
+                className="inline-block border-2 border-cyan-500 text-cyan-400 hover:bg-cyan-500 hover:text-white font-bold py-3 sm:py-4 px-6 sm:px-8 rounded-full text-base sm:text-lg transition-all duration-300 hover:scale-105"
               >
                 Appeler
               </a>
