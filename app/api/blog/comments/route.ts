@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { prisma } from '../../../lib/prisma'
+import { revalidatePath } from 'next/cache'
 
 export async function POST(request: NextRequest) {
   try {
@@ -37,6 +38,9 @@ export async function POST(request: NextRequest) {
         articleId
       }
     })
+
+    // Revalider la page de l'article
+    revalidatePath(`/blog/${article.slug}`)
 
     return NextResponse.json(
       { message: 'Commentaire ajouté avec succès', comment },

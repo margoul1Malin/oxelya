@@ -133,7 +133,7 @@ export async function generateStaticParams() {
 
 // Forcer le rendu statique
 export const dynamic = 'force-static'
-export const revalidate = 3600 // Revalidation toutes les heures
+export const revalidate = 60 // Revalidation toutes les minutes au lieu d'1 heure
 
 export default async function ArticlePage({ params }: ArticlePageProps) {
   // Récupérer l'article par son slug
