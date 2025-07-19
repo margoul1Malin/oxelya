@@ -160,62 +160,62 @@ export default function Services() {
       <Navigation currentPage="services" />
 
       {/* Hero Section */}
-      <AnimationWrapper animation="fadeIn" duration={0.8}>
-        <div className="text-center py-20 px-8">
-          <h1 className="text-6xl font-bold text-white mb-6 font-winky">
+      <AnimationWrapper animation="fadeIn" duration={0.6}>
+        <div className="text-center py-12 sm:py-20 px-4 sm:px-8">
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-4 sm:mb-6 font-winky">
             Nos <span className="bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent">Services</span>
           </h1>
-          <p className="text-xl text-gray-300 max-w-4xl mx-auto mb-8">
+          <p className="text-lg sm:text-xl text-gray-300 max-w-4xl mx-auto mb-6 sm:mb-8 px-4">
             Expert en services numériques à Bordeaux, Oxelya vous accompagne dans votre transformation digitale avec une approche complète : cybersécurité, développement web moderne, conseil IT stratégique et solutions d&apos;innovation sur-mesure. Notre équipe d&apos;experts met son savoir-faire au service de votre réussite.
           </p>
-          <div className="flex flex-wrap justify-center gap-4 text-sm text-gray-400">
-            <span className="bg-gray-800 px-3 py-1 rounded-full">Tests d&apos;intrusion</span>
-            <span className="bg-gray-800 px-3 py-1 rounded-full">Développement Web</span>
-            <span className="bg-gray-800 px-3 py-1 rounded-full">Cybersécurité</span>
-            <span className="bg-gray-800 px-3 py-1 rounded-full">Conseil Informatique</span>
-            <span className="bg-gray-800 px-3 py-1 rounded-full">Gadgets</span>
+          <div className="flex flex-wrap justify-center gap-2 sm:gap-4 text-xs sm:text-sm text-gray-400 px-4">
+            <span className="bg-gray-800 px-2 sm:px-3 py-1 rounded-full">Tests d&apos;intrusion</span>
+            <span className="bg-gray-800 px-2 sm:px-3 py-1 rounded-full">Développement Web</span>
+            <span className="bg-gray-800 px-2 sm:px-3 py-1 rounded-full">Cybersécurité</span>
+            <span className="bg-gray-800 px-2 sm:px-3 py-1 rounded-full">Conseil Informatique</span>
+            <span className="bg-gray-800 px-2 sm:px-3 py-1 rounded-full">Gadgets</span>
           </div>
         </div>
       </AnimationWrapper>
 
       {/* Services Grid */}
-      <div className="max-w-7xl mx-auto px-8 pb-20">
-        <div className="grid lg:grid-cols-2 gap-12">
+      <div className="max-w-7xl mx-auto px-4 sm:px-8 pb-12 sm:pb-20">
+        <div className="grid lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12">
           {services
             .filter(service => !service.disabled)
             .map((service, index) => (
             <AnimationWrapper
               key={index}
               animation="slideUp"
-              delay={index * 0.1}
-              duration={0.6}
+              delay={index * 0.05}
+              duration={0.4}
             >
-              <div className="bg-white/5 backdrop-blur-sm rounded-xl p-8 border border-white/10 hover:border-white/20 transition-all duration-300 group hover:scale-[1.02] h-full relative">
+              <div className="bg-white/5 backdrop-blur-sm rounded-xl p-4 sm:p-6 lg:p-8 border border-white/10 hover:border-white/20 transition-all duration-300 group hover:scale-[1.02] h-full relative">
                 <div className="h-full flex flex-col">
-                  <div className="text-6xl mb-6">{service.icon}</div>
-                  <h2 className="text-3xl font-bold text-white mb-2 font-winky">{service.title}</h2>
-                  <h3 className="text-lg text-gray-400 mb-4">{service.subtitle}</h3>
-                  <p className="text-gray-300 mb-6 leading-relaxed">{service.description}</p>
+                  <div className="text-4xl sm:text-5xl lg:text-6xl mb-4 sm:mb-6">{service.icon}</div>
+                  <h2 className="text-2xl sm:text-3xl font-bold text-white mb-2 font-winky">{service.title}</h2>
+                  <h3 className="text-base sm:text-lg text-gray-400 mb-3 sm:mb-4">{service.subtitle}</h3>
+                  <p className="text-sm sm:text-base text-gray-300 mb-4 sm:mb-6 leading-relaxed">{service.description}</p>
                   
-                  <div className="mb-6">
-                    <h4 className="text-lg font-semibold text-white mb-3">Services inclus :</h4>
-                    <ul className="space-y-2">
+                  <div className="mb-4 sm:mb-6">
+                    <h4 className="text-base sm:text-lg font-semibold text-white mb-2 sm:mb-3">Services inclus :</h4>
+                    <ul className="space-y-1 sm:space-y-2">
                       {service.features.map((feature, i) => (
                         <li key={i} className="flex items-start text-gray-300">
-                          <span className="w-2 h-2 bg-gradient-to-r from-cyan-400 to-purple-500 rounded-full mr-3 mt-2 flex-shrink-0"></span>
-                          <span className="text-sm">{feature}</span>
+                          <span className="w-2 h-2 bg-gradient-to-r from-cyan-400 to-purple-500 rounded-full mr-2 sm:mr-3 mt-2 flex-shrink-0"></span>
+                          <span className="text-xs sm:text-sm">{feature}</span>
                         </li>
                       ))}
                     </ul>
                   </div>
 
-                  <div className="mb-6 p-4 bg-gray-800/50 rounded-lg">
-                    <p className="text-sm text-gray-300 italic">{service.details}</p>
+                  <div className="mb-4 sm:mb-6 p-3 sm:p-4 bg-gray-800/50 rounded-lg">
+                    <p className="text-xs sm:text-sm text-gray-300 italic">{service.details}</p>
                   </div>
 
                   <Link 
                     href={`/services/${service.slug}`}
-                    className={`w-full py-3 px-6 rounded-lg bg-gradient-to-r ${service.color} text-white font-semibold transition-all duration-300 mt-auto hover:scale-105 text-center block`}
+                    className={`w-full py-2 sm:py-3 px-4 sm:px-6 rounded-lg bg-gradient-to-r ${service.color} text-white font-semibold transition-all duration-300 mt-auto hover:scale-105 text-center block text-sm sm:text-base`}
                   >
                     En savoir plus
                   </Link>
@@ -227,35 +227,35 @@ export default function Services() {
       </div>
 
       {/* Notre processus */}
-      <div ref={processRef} className="bg-gradient-to-r from-gray-900/50 to-black/50 py-20">
-        <div className="max-w-7xl mx-auto px-8">
-          <AnimationWrapper animation="fadeIn" delay={0.4} duration={0.8}>
-            <div className="text-center mb-16">
-              <h2 className="text-4xl font-bold text-white mb-6 font-winky">Notre Processus</h2>
-              <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+      <div ref={processRef} className="bg-gradient-to-r from-gray-900/50 to-black/50 py-12 sm:py-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-8">
+          <AnimationWrapper animation="fadeIn" delay={0.2} duration={0.6}>
+            <div className="text-center mb-12 sm:mb-16">
+              <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4 sm:mb-6 font-winky">Notre Processus</h2>
+              <p className="text-lg sm:text-xl text-gray-300 max-w-3xl mx-auto px-4">
                 Une méthodologie éprouvée pour garantir le succès de vos projets, de l&apos;analyse initiale à la livraison finale.
               </p>
             </div>
           </AnimationWrapper>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
             {processSteps.map((step, index) => (
               <motion.div
                 key={index}
                 className="text-center"
                 initial={{ opacity: 0, y: 20 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.6, delay: index * 0.2 }}
+                transition={{ duration: 0.4, delay: index * 0.1 }}
               >
-                <div className="relative mb-6">
+                <div className="relative mb-4 sm:mb-6">
                   <motion.div 
-                    className="w-16 h-16 rounded-full flex items-center justify-center mx-auto relative overflow-hidden"
+                    className="w-12 h-12 sm:w-16 sm:h-16 rounded-full flex items-center justify-center mx-auto relative overflow-hidden"
                     animate={{
                       background: index <= activeStep 
                         ? "linear-gradient(135deg, #06b6d4, #8b5cf6)" 
                         : "linear-gradient(135deg, #374151, #6b7280)"
                     }}
-                    transition={{ duration: 0.5, delay: index * 0.1 }}
+                    transition={{ duration: 0.4, delay: index * 0.05 }}
                   >
                     {/* Barre de progression animée */}
                     {index <= activeStep && (
@@ -263,21 +263,21 @@ export default function Services() {
                         className="absolute inset-0 bg-gradient-to-r from-cyan-400 to-purple-500"
                         initial={{ scaleX: 0 }}
                         animate={{ scaleX: 1 }}
-                        transition={{ duration: 0.8, delay: index * 0.1 }}
+                        transition={{ duration: 0.6, delay: index * 0.05 }}
                         style={{ transformOrigin: "left" }}
                       />
                     )}
-                    <span className="text-xl font-bold text-white relative z-10">{step.number}</span>
+                    <span className="text-lg sm:text-xl font-bold text-white relative z-10">{step.number}</span>
                   </motion.div>
                   
                   {/* Ligne de connexion avec animation */}
                   {index < processSteps.length - 1 && (
-                    <div className="hidden lg:block absolute top-8 left-1/2 w-full h-px bg-gray-600 transform translate-x-8">
+                    <div className="hidden lg:block absolute top-6 sm:top-8 left-1/2 w-full h-px bg-gray-600 transform translate-x-8">
                       <motion.div
                         className="h-full bg-gradient-to-r from-cyan-500 to-purple-600"
                         initial={{ scaleX: 0 }}
                         animate={index < activeStep ? { scaleX: 1 } : {}}
-                        transition={{ duration: 0.8, delay: (index + 1) * 0.1 }}
+                        transition={{ duration: 0.6, delay: (index + 1) * 0.05 }}
                         style={{ transformOrigin: "left" }}
                       />
                     </div>
@@ -285,17 +285,17 @@ export default function Services() {
                 </div>
                 
                 <motion.h3 
-                  className="text-xl font-semibold text-white mb-3"
+                  className="text-lg sm:text-xl font-semibold text-white mb-2 sm:mb-3"
                   animate={index <= activeStep ? { color: "#ffffff" } : { color: "#6b7280" }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  transition={{ duration: 0.4, delay: index * 0.05 }}
                 >
                   {step.title}
                 </motion.h3>
                 
                 <motion.p 
-                  className="text-sm"
+                  className="text-xs sm:text-sm"
                   animate={index <= activeStep ? { color: "#d1d5db" } : { color: "#6b7280" }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  transition={{ duration: 0.4, delay: index * 0.05 }}
                 >
                   {step.description}
                 </motion.p>
