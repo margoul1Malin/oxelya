@@ -92,23 +92,7 @@ export default function Services() {
     }
   ];
 
-  // Animation du processus quand la section est visible
-  useEffect(() => {
-    if (isInView) {
-      const interval = setInterval(() => {
-        setActiveStep(prev => {
-          if (prev < processSteps.length - 1) {
-            return prev + 1
-          } else {
-            clearInterval(interval)
-            return prev
-          }
-        })
-      }, 800) // Délai entre chaque étape
 
-      return () => clearInterval(interval)
-    }
-  }, [isInView])
 
   const processSteps = [
     {
@@ -132,6 +116,23 @@ export default function Services() {
       description: "Déploiement sécurisé et nous vous formons à l'utilisation de la solution."
     }
   ];
+
+  useEffect(() => {
+    if (isInView) {
+      const interval = setInterval(() => {
+        setActiveStep(prev => {
+          if (prev < processSteps.length - 1) {
+            return prev + 1
+          } else {
+            clearInterval(interval)
+            return prev
+          }
+        })
+      }, 800) // Délai entre chaque étape
+
+      return () => clearInterval(interval)
+    }
+  }, [isInView, processSteps.length])
 
   const faqItems = [
     {

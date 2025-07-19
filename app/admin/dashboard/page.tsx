@@ -3,6 +3,7 @@
 import { useState, useEffect, useCallback } from 'react'
 import { useRouter } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
+import AdminNavigation from '../../components/AdminNavigation'
 
 interface Contact {
   id: string
@@ -188,25 +189,7 @@ export default function AdminDashboard() {
 
   return (
     <div className="min-h-screen bg-black text-white">
-      {/* Header */}
-      <header className="bg-gray-900 border-b border-gray-800 p-4">
-        <div className="max-w-7xl mx-auto flex justify-between items-center">
-          <div>
-            <h1 className="text-2xl font-bold bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent">
-              Panel Admin - Oxelya
-            </h1>
-            <p className="text-gray-400 text-sm">
-              Connecté en tant que {adminData?.username}
-            </p>
-          </div>
-          <button
-            onClick={logout}
-            className="bg-red-600 hover:bg-red-700 px-4 py-2 rounded-lg transition-colors"
-          >
-            Déconnexion
-          </button>
-        </div>
-      </header>
+      <AdminNavigation adminData={adminData} onLogout={logout} />
 
       <div className="max-w-7xl mx-auto p-6">
         {/* Filtres */}

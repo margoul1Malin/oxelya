@@ -47,6 +47,7 @@ model Admin {
   updatedAt DateTime @updatedAt
   contacts  Contact[]
   replies   Reply[]
+  articles  Article[]
 }
 
 enum ContactStatus {
@@ -91,4 +92,54 @@ model BruteforceAttempt {
   @@index([fingerprint])
   @@index([sessionId])
   @@index([isBlocked])
+}
+
+model Article {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  title       String
+  content     String
+  slug        String   @unique
+  imageUrl    String?
+  excerpt     String?  // Résumé de l'article
+  published   Boolean  @default(false) // Pour publier/dépublier
+  
+  // Métadonnées SEO personnalisées
+  metaTitle     String?  // Titre personnalisé pour SEO
+  metaDesc      String?  // Description personnalisée pour SEO
+  metaKeywords  String?  // Mots-clés personnalisés pour SEO
+  
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // Relations
+  adminId     String   @db.ObjectId
+  admin       Admin    @relation(fields: [adminId], references: [id])
+  comments    Comment[]
+  ratings     Rating[]
+}
+
+model Comment {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  content     String
+  authorName  String   // Nom de l'auteur (pas d'authentification)
+  authorEmail String?  // Email optionnel
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // Relations
+  articleId   String   @db.ObjectId
+  article     Article  @relation(fields: [articleId], references: [id], onDelete: Cascade)
+}
+
+model Rating {
+  id          String    @id @default(auto()) @map("_id") @db.ObjectId
+  rating      Int       // Nombre d'étoiles (1-5)
+  authorName  String    // Nom de l'auteur (pas d'authentification)
+  authorEmail String?   // Email optionnel
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  // Relations
+  articleId   String    @db.ObjectId
+  article     Article   @relation(fields: [articleId], references: [id], onDelete: Cascade)
 }

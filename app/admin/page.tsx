@@ -7,7 +7,15 @@ export default function AdminRedirect() {
   const router = useRouter()
 
   useEffect(() => {
-    router.push('/admin/login')
+    // Vérifier si l'admin est connecté
+    const token = localStorage.getItem('adminToken')
+    const adminData = localStorage.getItem('adminData')
+
+    if (token && adminData) {
+      router.push('/admin/dashboard')
+    } else {
+      router.push('/admin/login')
+    }
   }, [router])
 
   return (

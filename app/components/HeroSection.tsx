@@ -99,6 +99,18 @@ export default function HeroSection() {
             </motion.div>
 
             <motion.a
+              href="/blog"
+              className="hover:text-cyan-400 transition-colors cursor-pointer relative group"
+              whileHover={{ y: -2 }}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 1.85 }}
+            >
+              Blog
+              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-cyan-400 to-purple-500 group-hover:w-full transition-all duration-300" />
+            </motion.a>
+
+            <motion.a
               href="/contact"
               className="hover:text-cyan-400 transition-colors cursor-pointer relative group"
               whileHover={{ y: -2 }}
@@ -159,6 +171,7 @@ export default function HeroSection() {
                       </div>
                     </div>
                     
+                    <a href="/blog" class="text-white text-2xl hover:text-cyan-400 transition-colors">Blog</a>
                     <a href="/contact" class="text-white text-2xl hover:text-cyan-400 transition-colors">Contact</a>
                     <button onclick="this.parentElement.remove()" class="text-white/60 text-lg mt-8">Fermer</button>
                   </div>
@@ -335,6 +348,63 @@ export default function HeroSection() {
             <p className="text-gray-300 text-xs">Années</p>
           </div>
         </div>
+      </motion.div>
+
+      {/* Indicateur de scroll */}
+      <motion.div 
+        className="absolute bottom-8 left-1/2 transform -translate-x-1/2 pointer-events-auto"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1, delay: 6.5 }}
+      >
+        <motion.div
+          className="flex flex-col items-center space-y-2 cursor-pointer group"
+          onClick={() => {
+            const nextSection = document.getElementById('about')
+            if (nextSection) {
+              nextSection.scrollIntoView({ behavior: 'smooth' })
+            }
+          }}
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.9 }}
+        >
+          <motion.div
+            className="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center"
+            animate={{ 
+              boxShadow: [
+                "0 0 0 0 rgba(255, 255, 255, 0.3)",
+                "0 0 0 10px rgba(255, 255, 255, 0)",
+                "0 0 0 0 rgba(255, 255, 255, 0)"
+              ]
+            }}
+            transition={{ 
+              duration: 2,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+          >
+            <motion.div
+              className="w-1 h-3 bg-gradient-to-b from-cyan-400 to-purple-500 rounded-full mt-2"
+              animate={{ y: [0, 12, 0] }}
+              transition={{ 
+                duration: 2,
+                repeat: Infinity,
+                ease: "easeInOut"
+              }}
+            />
+          </motion.div>
+          <motion.p 
+            className="text-white/60 text-xs font-medium group-hover:text-cyan-400 transition-colors"
+            animate={{ opacity: [0.6, 1, 0.6] }}
+            transition={{ 
+              duration: 2,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+          >
+            Découvrir
+          </motion.p>
+        </motion.div>
       </motion.div>
 
     </div>

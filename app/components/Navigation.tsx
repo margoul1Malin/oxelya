@@ -6,7 +6,7 @@ import { useState } from 'react'
 import PortfolioTooltip from './PortfolioTooltip'
 
 interface NavigationProps {
-  currentPage?: 'home' | 'services' | 'contact' | 'mentions-legales' | 'politique-confidentialite'
+  currentPage?: 'home' | 'services' | 'contact' | 'mentions-legales' | 'politique-confidentialite' | 'blog'
 }
 
 export default function Navigation({ currentPage = 'home' }: NavigationProps) {
@@ -48,6 +48,16 @@ export default function Navigation({ currentPage = 'home' }: NavigationProps) {
             }`}
           >
             Contact
+            <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-cyan-400 to-purple-500 group-hover:w-full transition-all duration-300" />
+          </Link>
+
+          <Link 
+            href="/blog" 
+            className={`hover:text-cyan-400 transition-colors cursor-pointer relative group ${
+              currentPage === 'blog' ? 'text-cyan-400 font-semibold' : ''
+            }`}
+          >
+            Blog
             <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-cyan-400 to-purple-500 group-hover:w-full transition-all duration-300" />
           </Link>
         </div>
@@ -153,7 +163,16 @@ export default function Navigation({ currentPage = 'home' }: NavigationProps) {
                 Contact
                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-cyan-400 to-purple-500 group-hover:w-full transition-all duration-300" />
               </Link>
-            </div>
+              <Link 
+                href="/blog" 
+                className={`hover:text-cyan-400 transition-colors cursor-pointer relative group text-lg ${
+                  currentPage === 'contact' ? 'text-cyan-400 font-semibold' : 'text-white/80'
+                }`}
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Blog
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-cyan-400 to-purple-500 group-hover:w-full transition-all duration-300" />
+              </Link>            </div>
           </motion.div>
         )}
       </AnimatePresence>

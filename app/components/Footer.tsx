@@ -7,7 +7,7 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-gray-900 border-t border-gray-800">
+    <footer className="bg-gray-900 border-t border-gray-800 text-center md:text-left">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Logo et description */}
@@ -25,7 +25,7 @@ export default function Footer() {
                 Votre partenaire technologique pour l&apos;évolutivité et les résultats. 
                 Nous transformons vos idées en solutions numériques innovantes.
               </p>
-              <div className="flex space-x-4">
+              <div className="flex space-x-4 justify-center md:justify-start">
                 <motion.a
                   href="mailto:contact@oxelya.com"
                   className="text-gray-400 hover:text-blue-400 transition-colors"

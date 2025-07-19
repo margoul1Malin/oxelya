@@ -33,7 +33,7 @@ function DataParticles() {
   const count = 500 // Réduit de 1000 à 500
   const mesh = useRef<THREE.InstancedMesh>(null!)
   
-  const { positions, colors } = useMemo(() => {
+  const { positions } = useMemo(() => {
     const positions = new Float32Array(count * 3)
     const colors = new Float32Array(count * 3)
     
@@ -125,15 +125,15 @@ function CentralHologram() {
     animateHologram(state.clock.getElapsedTime())
   })
   
-  const handlePointerMove = useCallback((event: any) => {
-    if (hovered && sphereRef.current) {
-      // Utiliser les coordonnées normalisées de Three.js
-      const x = event.point.x / 2
-      const y = event.point.y / 2
-      const z = event.point.z / 2
-    }
-  }, [hovered])
-  
+  // const handlePointerMove = useCallback((event: any) => {
+  //if (hovered && sphereRef.current) {
+    // Utiliser les coordonnées normalisées de Three.js
+    // const x = event.point.x / 2
+    // const y = event.point.y / 2
+    // const z = event.point.z / 2
+  // }
+  // }, [hovered])
+
   return (
     <group ref={group}>
       {/* Sphère centrale avec effet de vague progressif */}
@@ -143,7 +143,7 @@ function CentralHologram() {
           args={[2, 64, 64]} // Réduit les segments de 128 à 64
           onPointerEnter={() => setHovered(true)}
           onPointerLeave={() => setHovered(false)}
-          onPointerMove={handlePointerMove}
+          //onPointerMove={handlePointerMove}
         >
           <MeshDistortMaterial
             color="#00d4ff"

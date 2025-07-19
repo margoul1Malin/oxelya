@@ -55,9 +55,9 @@ export default function ProgressiveHome() {
               </Link>
               
               <div className="hidden md:flex space-x-8 text-white/80">
-                <a href="/services" className="hover:text-cyan-400 transition-colors">
+                <Link href="/services" className="hover:text-cyan-400 transition-colors">
                   Services
-                </a>
+                </Link>
                 <div className="relative group">
                   <span className="hover:text-cyan-400 transition-colors cursor-pointer">
                     Portfolio
@@ -66,7 +66,7 @@ export default function ProgressiveHome() {
                   <div className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-50">
                     <div className="bg-black/90 backdrop-blur-sm rounded-xl p-4 border border-white/20 shadow-2xl min-w-[280px]">
                       <div className="space-y-3">
-                        <a
+                        <Link
                           href="https://margoul1.dev"
                           target="_blank"
                           rel="noopener noreferrer"
@@ -81,8 +81,8 @@ export default function ProgressiveHome() {
                               <div className="text-xs text-gray-400">Portfolio technique & projets</div>
                             </div>
                           </div>
-                        </a>
-                        <a
+                        </Link>
+                        <Link
                           href="https://margoul1.xyz"
                           target="_blank"
                           rel="noopener noreferrer"
@@ -97,14 +97,17 @@ export default function ProgressiveHome() {
                               <div className="text-xs text-gray-400">Blog & expérimentations</div>
                             </div>
                           </div>
-                        </a>
+                        </Link>
                       </div>
                     </div>
                   </div>
                 </div>
-                <a href="/contact" className="hover:text-cyan-400 transition-colors">
+                <Link href="/blog" className="hover:text-cyan-400 transition-colors">
+                  Blog
+                </Link>
+                <Link href="/contact" className="hover:text-cyan-400 transition-colors">
                   Contact
-                </a>
+                </Link>
               </div>
               
               {/* Menu mobile (statique) */}
@@ -151,6 +154,7 @@ export default function ProgressiveHome() {
                           </div>
                         </div>
                         
+                        <a href="/blog" class="text-white text-2xl hover:text-cyan-400 transition-colors">Blog</a>
                         <a href="/contact" class="text-white text-2xl hover:text-cyan-400 transition-colors">Contact</a>
                         <button onclick="this.parentElement.remove()" class="text-white/60 text-lg mt-8">Fermer</button>
                       </div>
@@ -192,18 +196,12 @@ export default function ProgressiveHome() {
 
               {/* CTA statique */}
               <div className="space-y-4">
-                <a
+                <Link
                   href="/services"
                   className="inline-block bg-gradient-to-r from-cyan-500 to-purple-600 text-white font-bold py-4 px-8 rounded-full text-lg mr-4 mb-4"
                 >
                   Découvrir nos services
-                </a>
-                <a
-                  href="/contact"
-                  className="inline-block border-2 border-cyan-500 text-cyan-400 font-bold py-4 px-8 rounded-full text-lg"
-                >
-                  Nous contacter
-                </a>
+                </Link>
               </div>
             </div>
           </div>
@@ -214,9 +212,21 @@ export default function ProgressiveHome() {
 
   // Version avec animations Three.js et Framer Motion
   return (
-    <main className="relative w-full h-screen overflow-hidden">
-      <ClientThreeWrapper />
-      <HeroSection />
-    </main>
+    <>
+      <main className="relative w-full h-screen overflow-hidden">
+        <ClientThreeWrapper />
+        <HeroSection />
+      </main>
+      
+      {/* Zone statique pour permettre le défilement */}
+      <div className="relative w-full bg-gray-900">
+        <div className="h-32 flex items-center justify-center">
+          <div className="text-center">
+            <div className="w-1 h-16 bg-gradient-to-b from-cyan-400 to-purple-500 rounded-full mx-auto mb-4"></div>
+            <p className="text-white/60 text-sm font-medium">Continuez votre exploration</p>
+          </div>
+        </div>
+      </div>
+    </>
   )
 } 

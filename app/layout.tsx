@@ -100,8 +100,8 @@ export const metadata: Metadata = {
   icons: {
     icon: "/favicon.ico",
   },
-  description: "Oxelya offre ses prestantions en conception web, programmation, sécurité informatique, et conseil en informatique.",
-  keywords: ["pentest", "sécurité informatique", "développement web", "services numériques", "conseil IT", "cybersécurité", "transformation numérique", "audit sécurité", "conception web", "programmation", "conseil en informatique"],
+  description: "Oxelya offre ses prestantions en conception WEB, PROGRAMMATION, SECURITÉ INFORMATIQUE, et CONSEIL EN INFORMATIQUE. Nous sommes spécialisés pour le référencement SEO chez GOOGLE, BING, YANDEX, etc...",
+  keywords: ["pentest", "SÉCURITÉ INFORMATIQUE", "développement web", "SERVICES  NUMÉRIQUES", "CONSEIL IT", "CONCEPTION WEB", "cybersécurité", "transformation numérique", "audit sécurité", "conception web", "programmation", "conseil en informatique"],
   authors: [{ name: "Oxelya", url: "https://oxelya.com" }],
   creator: "Oxelya",
   publisher: "Oxelya",
