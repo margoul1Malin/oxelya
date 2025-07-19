@@ -289,6 +289,8 @@ export default function AdminArticlesPage() {
                                 src={article.imageUrl} 
                                 alt={article.title}
                                 className="w-12 h-12 rounded-lg object-cover"
+                                width={48}
+                                height={48}
                               />
                             )}
                             <div>

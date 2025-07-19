@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { verifyToken } from '../../../../lib/auth'
 import { prisma } from '../../../../lib/prisma'
+import { revalidatePath } from 'next/cache'
 
 // GET - Récupérer un article spécifique
 export async function GET(
@@ -166,6 +167,11 @@ async function updateArticle(
       }
     })
 
+    // Revalider les pages qui affichent les articles
+    revalidatePath('/blog')
+    revalidatePath(`/blog/${updatedArticle.slug}`)
+    revalidatePath('/admin/articles')
+
     return NextResponse.json(
       { 
         message: 'Article modifié avec succès',
@@ -232,6 +238,11 @@ export async function DELETE(
     await prisma.article.delete({
       where: { id: resolvedParams.id }
     })
+
+    // Revalider les pages qui affichent les articles
+    revalidatePath('/blog')
+    revalidatePath(`/blog/${existingArticle.slug}`)
+    revalidatePath('/admin/articles')
 
     return NextResponse.json(
       { message: 'Article supprimé avec succès' },

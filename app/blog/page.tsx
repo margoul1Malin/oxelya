@@ -73,7 +73,7 @@ export const metadata: Metadata = {
 
 // Forcer le rendu statique pour SEO
 export const dynamic = 'force-static'
-export const revalidate = 3600 // Revalidation toutes les heures
+export const revalidate = 60 // Revalidation toutes les minutes au lieu d'1 heure
 
 export default async function BlogPage() {
   // Récupérer tous les articles publiés

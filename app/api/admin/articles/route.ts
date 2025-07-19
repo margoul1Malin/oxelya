@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { verifyToken } from '../../../lib/auth'
 import { prisma } from '../../../lib/prisma'
+import { revalidatePath } from 'next/cache'
 
 // GET - Récupérer tous les articles
 export async function GET(request: NextRequest) {
@@ -167,6 +168,10 @@ export async function POST(request: NextRequest) {
         }
       }
     })
+
+    // Revalider les pages qui affichent les articles
+    revalidatePath('/blog')
+    revalidatePath('/admin/articles')
 
     return NextResponse.json(
       { 
