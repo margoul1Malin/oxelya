@@ -9,19 +9,31 @@ import Link from 'next/link'
 export default function ProgressiveHome() {
   const isEnhanced = useProgressiveEnhancement()
   const [particles, setParticles] = useState<Array<{ left: string; top: string; delay: string }>>([])
+  const [isMobile, setIsMobile] = useState(false)
+
+  // Détecter si on est sur mobile
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768)
+    }
+    
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+    return () => window.removeEventListener('resize', checkMobile)
+  }, [])
 
   // Générer les particules côté client pour éviter l'erreur d'hydratation
   useEffect(() => {
-    const newParticles = [...Array(20)].map(() => ({
+    const newParticles = [...Array(isMobile ? 10 : 20)].map(() => ({
       left: `${Math.random() * 100}%`,
       top: `${Math.random() * 100}%`,
       delay: `${Math.random() * 3}s`
     }))
     setParticles(newParticles)
-  }, [])
+  }, [isMobile])
 
-  // Version statique HTML pour Googlebot
-  if (!isEnhanced) {
+  // Version statique HTML pour Googlebot et mobile
+  if (!isEnhanced || isMobile) {
     return (
       <main className="relative w-full h-screen overflow-hidden">
         {/* Arrière-plan statique qui ressemble à l'original */}
@@ -210,7 +222,7 @@ export default function ProgressiveHome() {
     )
   }
 
-  // Version avec animations Three.js et Framer Motion
+  // Version avec animations Three.js et Framer Motion (desktop seulement)
   return (
     <>
       <main className="relative w-full h-screen overflow-hidden">

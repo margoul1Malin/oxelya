@@ -122,8 +122,11 @@ export default function Home() {
                   src="/WebDev.jpg" 
                   alt="Développement web moderne avec code et technologies" 
                   className="w-full h-80 object-cover rounded-2xl shadow-2xl shadow-cyan-500/20 border border-white/10"
-                  width={1000}
-                  height={1000}
+                  width={565}
+                  height={318}
+                  sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 33vw"
+                  priority={false}
+                  quality={75}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent rounded-2xl"></div>
               </div>
@@ -160,10 +163,13 @@ export default function Home() {
               <div className="relative order-first md:order-last">
                 <Image
                   src="/ConseilInfo.jpg" 
-                  alt="Développement web moderne avec code et technologies" 
+                  alt="Conseils en informatique et cybersécurité" 
                   className="w-full h-80 object-cover rounded-2xl shadow-2xl shadow-cyan-500/20 border border-white/10"
-                  width={1000}
-                  height={1000}
+                  width={477}
+                  height={318}
+                  sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 33vw"
+                  priority={false}
+                  quality={75}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent rounded-2xl"></div>
               </div>
@@ -200,10 +206,13 @@ export default function Home() {
               <div className="relative order-first md:order-last">
                 <Image
                   src="/hacking.png" 
-                  alt="Développement web moderne avec code et technologies" 
+                  alt="Formations en cybersécurité et hacking éthique" 
                   className="w-full h-80 object-cover rounded-2xl shadow-2xl shadow-cyan-500/20 border border-white/10"
-                  width={1000}
-                  height={1000}
+                  width={565}
+                  height={318}
+                  sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 33vw"
+                  priority={false}
+                  quality={75}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent rounded-2xl"></div>
               </div>
@@ -238,10 +247,13 @@ export default function Home() {
               <div className="relative order-first md:order-last">
                 <Image
                   src="/LogoDesign.jpg" 
-                  alt="Développement web moderne avec code et technologies" 
+                  alt="Design de logos et identité visuelle" 
                   className="w-full h-80 object-cover rounded-2xl shadow-2xl shadow-cyan-500/20 border border-white/10"
-                  width={1000}
-                  height={1000}
+                  width={565}
+                  height={318}
+                  sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 33vw"
+                  priority={false}
+                  quality={75}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent rounded-2xl"></div>
               </div>

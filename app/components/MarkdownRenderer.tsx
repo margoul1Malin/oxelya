@@ -42,8 +42,8 @@ export default function MarkdownRenderer({ content, className = "" }: MarkdownRe
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className={`prose prose-invert prose-lg max-w-none ${className}`}
+          transition={{ duration: 0.4 }}
+          className={`prose prose-invert prose-sm sm:prose-lg max-w-none ${className}`}
           dangerouslySetInnerHTML={{ __html: htmlContent }}
         />
       )}

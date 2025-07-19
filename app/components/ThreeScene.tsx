@@ -9,14 +9,16 @@ import Image from 'next/image'
 // Composant de chargement 3D optimisé
 function Loader() {
   const { progress } = useProgress()
+  const isMobile = typeof window !== 'undefined' && window.innerWidth < 768
+  
   return (
     <Html center>
       <div className="text-white text-center">
-        <div className="text-6xl font-bold mb-4 bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent">
-            <Image src="/Logo3.png" alt="Oxelya" width={32} height={32} />
+        <div className={`${isMobile ? 'text-4xl' : 'text-6xl'} font-bold mb-4 bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent`}>
+            <Image src="/Logo3.png" alt="Oxelya" width={isMobile ? 24 : 32} height={isMobile ? 24 : 32} />
             Oxelya
         </div>
-        <div className="w-64 h-2 bg-gray-800 rounded-full overflow-hidden">
+        <div className={`${isMobile ? 'w-48' : 'w-64'} h-2 bg-gray-800 rounded-full overflow-hidden`}>
           <div 
             className="h-full bg-gradient-to-r from-cyan-500 to-purple-600 transition-all duration-300 ease-out"
             style={{ width: `${progress}%` }}
@@ -30,7 +32,9 @@ function Loader() {
 
 // Particules de données flottantes optimisées
 function DataParticles() {
-  const count = 500 // Réduit de 1000 à 500
+  // Réduire drastiquement sur mobile
+  const isMobile = typeof window !== 'undefined' && window.innerWidth < 768
+  const count = isMobile ? 30 : 500 // Seulement 30 particules sur mobile
   const mesh = useRef<THREE.InstancedMesh>(null!)
   
   const { positions } = useMemo(() => {
@@ -39,7 +43,7 @@ function DataParticles() {
     
     for (let i = 0; i < count; i++) {
       // Position aléatoire dans une sphère
-      const radius = Math.random() * 25 + 10
+      const radius = Math.random() * (isMobile ? 12 : 25) + (isMobile ? 3 : 10)
       const theta = Math.random() * Math.PI * 2
       const phi = Math.random() * Math.PI
       
@@ -56,11 +60,15 @@ function DataParticles() {
     }
     
     return { positions, colors }
-  }, [])
+  }, [count, isMobile])
   
-  // Animation optimisée avec useCallback
+  // Animation optimisée avec useCallback et throttling
   const animateParticles = useCallback((time: number) => {
     if (!mesh.current) return
+    
+    // Throttling plus agressif sur mobile
+    const throttleRate = isMobile ? 0.05 : 0.016 // ~20fps sur mobile, ~60fps sur desktop
+    if (time % throttleRate > throttleRate / 2) return
     
     for (let i = 0; i < count; i++) {
       const i3 = i * 3
@@ -82,7 +90,7 @@ function DataParticles() {
       mesh.current.setMatrixAt(i, matrix)
     }
     mesh.current.instanceMatrix.needsUpdate = true
-  }, [positions, count])
+  }, [positions, count, isMobile])
   
   useFrame((state) => {
     animateParticles(state.clock.getElapsedTime())
@@ -296,22 +304,26 @@ function Scene() {
 
 // Composant principal exporté optimisé
 export default function ThreeScene() {
+  const isMobile = typeof window !== 'undefined' && window.innerWidth < 768
+
   return (
     <div className="w-full h-screen">
       <Canvas
-        camera={{ position: [0, 5, 20], fov: 60 }}
+        camera={{ position: [0, 5, isMobile ? 25 : 20], fov: isMobile ? 40 : 60 }}
         gl={{ 
-          antialias: true, 
+          antialias: !isMobile, // Désactiver l'antialiasing sur mobile
           alpha: true,
           powerPreference: "high-performance",
           stencil: false, // Désactive le stencil pour les performances
           depth: true
         }}
+        dpr={isMobile ? [1, 1] : [1, 2]} // Pas de DPR élevé sur mobile
+        performance={{ min: isMobile ? 0.2 : 0.5 }} // Qualité très basse sur mobile
         style={{ 
           background: 'radial-gradient(circle at center, #1a1a2e 0%, #0a0a0a 70%)'
         }}
-        shadows
-        frameloop="demand" // Optimisation du frameloop
+        shadows={!isMobile} // Pas d'ombres sur mobile
+        frameloop={isMobile ? "demand" : "demand"} // Optimisation du frameloop
       >
         <Suspense fallback={<Loader />}>
           <Scene />
@@ -320,12 +332,12 @@ export default function ThreeScene() {
         
         <OrbitControls 
           enablePan={false} 
-          enableZoom={true}
-          enableRotate={true}
-          autoRotate={true}
+          enableZoom={!isMobile}
+          enableRotate={!isMobile}
+          autoRotate={!isMobile}
           autoRotateSpeed={0.3} // Réduit la vitesse
-          maxDistance={50}
-          minDistance={5}
+          maxDistance={isMobile ? 30 : 50}
+          minDistance={isMobile ? 8 : 5}
           maxPolarAngle={Math.PI / 1.8}
           minPolarAngle={Math.PI / 6}
         />

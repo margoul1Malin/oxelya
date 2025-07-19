@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useRef, useState, useCallback } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 interface TimelineStep {
   id: number
@@ -50,52 +50,6 @@ export default function ProcessTimeline() {
   const scrollAccumulator = useRef(0)
   const lastScrollTime = useRef(Date.now())
 
-  // Fonction pour bloquer le scroll naturel
-  const preventScroll = useCallback((e: WheelEvent) => {
-    if (isScrollLocked && !isCompleted) {
-      e.preventDefault()
-    }
-  }, [isScrollLocked, isCompleted])
-
-  // Gestion du scroll controlé
-  const handleControlledScroll = useCallback((e: WheelEvent) => {
-    if (!isScrollLocked || !containerRef.current || isCompleted) return
-
-    e.preventDefault()
-    
-    const now = Date.now()
-    const timeDiff = now - lastScrollTime.current
-    lastScrollTime.current = now
-
-    // Accumuler le scroll (plus le scroll est rapide, plus on avance)
-    const scrollDelta = e.deltaY > 0 ? 1 : -1
-    const speed = Math.min(timeDiff / 16, 3) // Limiter la vitesse
-    scrollAccumulator.current += scrollDelta * speed
-
-    // Convertir l'accumulateur en progression (0-100) - accéléré
-    const newProgress = Math.max(0, Math.min(100, scrollAccumulator.current * 2))
-    setInternalProgress(newProgress)
-    
-    // Si on a terminé (100%), marquer comme complété et libérer le scroll
-    if (newProgress >= 100) {
-      setIsCompleted(true)
-      setTimeout(() => {
-        setIsScrollLocked(false)
-        // Scroll automatique pour sortir de la section
-        window.scrollBy({ top: 200, behavior: 'smooth' })
-      }, 500)
-    }
-    
-    // Si on scroll vers le haut et qu'on est au début, libérer le scroll
-    if (newProgress <= 0 && scrollDelta < 0) {
-      setTimeout(() => {
-        setIsScrollLocked(false)
-        window.scrollBy({ top: -200, behavior: 'smooth' })
-      }, 300)
-    }
-
-  }, [isScrollLocked, isCompleted])
-
   // Observer pour détecter quand on entre dans la zone
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -121,14 +75,50 @@ export default function ProcessTimeline() {
 
   // Gestion des événements de scroll
   useEffect(() => {
-    window.addEventListener('wheel', preventScroll, { passive: false })
-    window.addEventListener('wheel', handleControlledScroll, { passive: false })
+    const handleWheel = (e: WheelEvent) => {
+      // D'abord gérer le scroll controlé
+      if (isScrollLocked && !isCompleted && containerRef.current) {
+        e.preventDefault()
+        
+        const now = Date.now()
+        const timeDiff = now - lastScrollTime.current
+        lastScrollTime.current = now
+
+        // Accumuler le scroll (plus le scroll est rapide, plus on avance)
+        const scrollDelta = e.deltaY > 0 ? 1 : -1
+        const speed = Math.min(timeDiff / 16, 3) // Limiter la vitesse
+        scrollAccumulator.current += scrollDelta * speed
+
+        // Convertir l'accumulateur en progression (0-100) - accéléré
+        const newProgress = Math.max(0, Math.min(100, scrollAccumulator.current * 2))
+        setInternalProgress(newProgress)
+        
+        // Si on a terminé (100%), marquer comme complété et libérer le scroll
+        if (newProgress >= 100) {
+          setIsCompleted(true)
+          setTimeout(() => {
+            setIsScrollLocked(false)
+            // Scroll automatique pour sortir de la section
+            window.scrollBy({ top: 200, behavior: 'smooth' })
+          }, 500)
+        }
+        
+        // Si on scroll vers le haut et qu'on est au début, libérer le scroll
+        if (newProgress <= 0 && scrollDelta < 0) {
+          setTimeout(() => {
+            setIsScrollLocked(false)
+            window.scrollBy({ top: -200, behavior: 'smooth' })
+          }, 300)
+        }
+      }
+    }
+
+    window.addEventListener('wheel', handleWheel, { passive: false })
 
     return () => {
-      window.removeEventListener('wheel', preventScroll)
-      window.removeEventListener('wheel', handleControlledScroll)
+      window.removeEventListener('wheel', handleWheel)
     }
-  }, [preventScroll, handleControlledScroll])
+  }, [isScrollLocked, isCompleted])
 
   // Calculer la progression finale basée sur le progrès interne
   useEffect(() => {

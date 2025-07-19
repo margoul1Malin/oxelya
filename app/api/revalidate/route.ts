@@ -4,7 +4,7 @@ import { NextRequest, NextResponse } from 'next/server'
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json()
-    const { secret, path } = body
+    const { secret } = body
 
     // Vérifier le secret pour la sécurité
     if (secret !== process.env.REVALIDATE_SECRET) {

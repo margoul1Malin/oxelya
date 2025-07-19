@@ -182,7 +182,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
           </div>
 
           {/* Section commentaires et notes - Plus compact sur desktop */}
-          <div className="xl:col-span-1">
+          <div className="xl:col-span-1 order-first xl:order-last">
             <ArticleComments articleId={article.id} comments={article.comments} />
           </div>
         </div>

@@ -52,6 +52,62 @@ const nextConfig: NextConfig = {
       },
     ];
   },
+
+  // Optimisation du webpack
+  webpack: (config, { dev, isServer }) => {
+    // Optimisation pour la production
+    if (!dev && !isServer) {
+      config.optimization = {
+        ...config.optimization,
+        splitChunks: {
+          chunks: 'all',
+          cacheGroups: {
+            vendor: {
+              test: /[\\/]node_modules[\\/]/,
+              name: 'vendors',
+              chunks: 'all',
+            },
+            common: {
+              name: 'common',
+              minChunks: 2,
+              chunks: 'all',
+              enforce: true,
+            },
+          },
+        },
+      };
+
+      // Réduire les polyfills pour les navigateurs modernes
+      config.resolve.fallback = {
+        ...config.resolve.fallback,
+        fs: false,
+        net: false,
+        tls: false,
+      };
+
+      // Optimisation pour mobile
+      config.module.rules.push({
+        test: /\.js$/,
+        include: /node_modules/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: [
+              ['@babel/preset-env', {
+                targets: {
+                  browsers: ['> 1%', 'last 2 versions', 'not ie <= 11']
+                },
+                useBuiltIns: 'usage',
+                corejs: 3
+              }]
+            ]
+          }
+        }
+      });
+    }
+
+    return config;
+  },
 };
 
 export default nextConfig;

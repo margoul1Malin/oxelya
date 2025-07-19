@@ -22,8 +22,8 @@ export default function ArticleHeader() {
   )
 
   return (
-    <div className="relative pt-8 pb-8">
-      <div className="max-w-4xl mx-auto px-8">
+    <div className="relative pt-6 sm:pt-8 pb-6 sm:pb-8">
+      <div className="max-w-4xl mx-auto px-4 sm:px-8">
         {!isClient ? (
           /* Version statique (visible sans JS) */
           headerContent
@@ -32,7 +32,7 @@ export default function ArticleHeader() {
           <motion.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 0.6 }}
           >
             {headerContent}
           </motion.div>

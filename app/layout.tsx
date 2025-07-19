@@ -158,6 +158,27 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="fr">
+      <head>
+        {/* Preconnect pour les ressources externes */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        
+        {/* DNS prefetch pour les domaines externes */}
+        <link rel="dns-prefetch" href="//raw.githubusercontent.com" />
+        
+        {/* Meta tags pour les performances */}
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+        <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
+        
+        {/* Optimisations pour mobile */}
+        <meta name="theme-color" content="#000000" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+        
+        {/* Preload des polices critiques */}
+        <link rel="preload" href="/fonts/static/WinkyRough-Regular.ttf" as="font" type="font/ttf" crossOrigin="anonymous" />
+        <link rel="preload" href="/fonts/static/WinkyRough-Bold.ttf" as="font" type="font/ttf" crossOrigin="anonymous" />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${winkyRough.variable} antialiased`}
       >
